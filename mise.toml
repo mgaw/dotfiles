@@ -1,0 +1,15 @@
+[env]
+LUA_PATH = "{{config_root}}/nvim/lua/?.lua;;"
+
+[tasks]
+format = [
+    "stylua .",
+    "treefmt",
+    "shfmt -w .",
+]
+test = [
+    "busted .",
+]
+lint = [
+    "lua-language-server --check=nvim",
+]

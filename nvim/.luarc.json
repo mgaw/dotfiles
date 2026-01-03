@@ -1,0 +1,15 @@
+{
+  "diagnostics": {
+    "globals": ["vim", "Snacks", "describe", "it"],
+    "disable": [
+      "different-requires"
+    ]
+  },
+  "runtime": {
+    "version": "LuaJIT"
+  },
+  "workspace": {
+    "checkThirdParty": false,
+    "library": ["lua/types"]
+  }
+}

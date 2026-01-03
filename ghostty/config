@@ -1,0 +1,21 @@
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor
+
+foreground = dbddd8
+background = 000000
+
+# hold shift while selecting to select arbitrary text
+copy-on-select = clipboard
+
+font-family = UbuntuMono Nerd Font
+font-size = 18
+font-thicken = true
+
+window-new-tab-position = end
+
+mouse-scroll-multiplier = 0.4
+
+keybind = shift+enter=text:\n
+
+macos-titlebar-style = "tabs"
