@@ -3,7 +3,6 @@
 {
   home.packages = with pkgs; [
     gopass
-    gopass-jsonapi
   ];
 
   # These files would usually be created by `gopass-jsonapi configure --browser {firefox,chrome}`
