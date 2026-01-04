@@ -49,7 +49,6 @@ in
       ripgrep
       tree
       yubikey-manager
-      zsh-completions
 
       # font
       nerd-fonts.ubuntu-mono

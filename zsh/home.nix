@@ -1,15 +1,14 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 
 let
   inherit (import ../nix/utils.nix config) dotfiles;
 in
 
 {
+  home.packages = [
+    pkgs.zsh-completions
+  ];
+
   programs.zsh = {
     enable = true;
     autocd = true;
@@ -22,6 +21,7 @@ in
       save = 999999999;
     };
     autosuggestion.enable = true;
+    enableCompletion = true;
 
     plugins = [
       {
@@ -43,9 +43,6 @@ in
       source ${dotfiles}/zsh/git-aliases.zsh
       source ${dotfiles}/zsh/bindkey.zsh
       source ${dotfiles}/zsh/ps1.zsh
-
-      # Set PATH again due to path_helper doing weird stuff
-      export path=(${lib.concatStringsSep " " config.home.sessionPath})
     '';
   };
 }

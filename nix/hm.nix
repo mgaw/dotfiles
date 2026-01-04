@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   nixpkgs = {
@@ -20,19 +20,13 @@
 
   home.stateVersion = "24.05";
 
-  home.sessionPath = [
-    # I currently don't source nix-daemon.sh in /etc/zshrc, I'm not sure why things don't break.
-    # https://github.com/NixOS/nix/issues/3616
-    "${config.home.homeDirectory}/.nix-profile/bin"
-    "/nix/var/nix/profiles/default/bin"
-    "/usr/local/bin"
-    "/usr/bin"
-    "/bin"
-    "/usr/sbin"
-    "/sbin"
-  ];
-
   programs.home-manager = {
     enable = true;
   };
+
+  # Normally this is sourced in /etc/zshrc but it can be overwritten by macos updates
+  # https://github.com/NixOS/nix/issues/3616
+  programs.zsh.initContent = lib.mkBefore /* zsh */ ''
+    source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+  '';
 }
