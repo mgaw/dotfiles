@@ -2,5 +2,18 @@
   "env": {
     "DISABLE_AUTOUPDATER": "1"
   },
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/osascript -e 'display notification \"Claude Code needs your permission\" with title \"Claude Code\"'"
+          }
+        ]
+      }
+    ]
+  },
   "model": "opus"
 }
