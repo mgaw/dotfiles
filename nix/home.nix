@@ -28,8 +28,8 @@ in
     ./homebrew.nix
     ./kube-ps1.nix
     ./mise.nix
-  ]
-  ++ builtins.filter builtins.pathExists [ ~/src/dotfiles/nix/home.local.nix ];
+    ~/src/dotfiles/nix/home.local.nix
+  ];
 
   home = {
     inherit username;
