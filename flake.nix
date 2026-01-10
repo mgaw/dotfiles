@@ -9,12 +9,16 @@
 
   outputs =
     { nixpkgs, home-manager, ... }:
+    let
+      system = "aarch64-darwin";
+      pkgs = nixpkgs.legacyPackages.${system};
+      username = builtins.getEnv "USER";
+    in
     {
-      homeConfigurations = {
-        marius = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-          modules = [ ./nix/home.nix ];
-        };
+      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = { inherit username; };
+        modules = [ ./nix/home.nix ];
       };
     };
 }

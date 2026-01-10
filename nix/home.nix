@@ -5,7 +5,12 @@
 # https://nix.dev/manual/nix/latest/
 # nix hash convert --to nix32 sha256-...
 
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  username,
+  ...
+}:
 
 let
   inherit (import ./utils.nix config) mkDotfilesSymlink;
@@ -27,8 +32,8 @@ in
   ++ builtins.filter builtins.pathExists [ ~/src/dotfiles/nix/home.local.nix ];
 
   home = {
-    username = "marius";
-    homeDirectory = "/Users/marius";
+    inherit username;
+    homeDirectory = "/Users/${username}";
 
     file = {
       ".claude/settings.json".source = mkDotfilesSymlink "claude/settings.json";
