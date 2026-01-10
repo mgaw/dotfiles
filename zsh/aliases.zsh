@@ -8,14 +8,9 @@ dfu() {
     brew upgrade
     nix flake update --flake ~/src/dotfiles --commit-lock-file
     home-manager switch --flake ~/src/dotfiles --impure
-    local hm_exit_code=$?
     nvim -c "lua require('lazy').sync({ wait = true })"
     git -C ~/src/dotfiles commit -m 'nvim/lazy-lock.json: Update' -- nvim/lazy-lock.json
     softwareupdate --install --list
-    if [[ $hm_exit_code -eq 0 ]]; then
-        # only gc if switch worked to avoid re-downloading all on next attempt
-        nix store gc
-    fi
 }
 
 dfa() {
