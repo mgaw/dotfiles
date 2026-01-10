@@ -15,7 +15,7 @@ dfu() {
 
 dfa() {
     home-manager switch --flake ~/src/dotfiles --impure
-    nvim -c "lua require('lazy').restore({ wait = true })" -c quit -c quit
+    nvim --headless -c "lua require('lazy').restore({ wait = true })" -c quit >/dev/null
 }
 
 vim() {
