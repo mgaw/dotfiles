@@ -59,10 +59,36 @@ in
       nerd-fonts.ubuntu-mono
 
       # development
-      lua
+      ast-grep
+      libxml2 # xmllint
+      taplo
+
+      ## js
+      biome
       nodejs
+      prettier
+      typescript
+      vscode-langservers-extracted
+
+      ## lua
+      lua
+      lua-language-server
+      luajit.pkgs.busted
+      stylua
+
+      ## python
+      pyright
       python3
+      ruff
+
+      ## nix
+      nil
       nixfmt-tree
+
+      ## sh
+      nodePackages.bash-language-server
+      shellcheck
+      shfmt
 
       # av
       ffmpeg # convert video and audio
@@ -116,6 +142,7 @@ in
       version = "latest";
       uvx_args = "--with llm-mlx";
     };
+    "pipx:ty" = "latest";
   };
 
   programs = {

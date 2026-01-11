@@ -18,6 +18,10 @@ in
       ps: with ps; [
         magick # image.nvim
       ];
+
+    extraPackages = [
+      pkgs.tree-sitter # treesitter.lua
+    ];
   };
 
   editorconfig = {
@@ -60,42 +64,8 @@ in
       '';
     };
 
-    packages = with pkgs; [
-      ## conform.lua
-      prettier
-      shfmt
-      stylua
-      libxml2 # xmllint
-
-      ## lspconfig.lua
-      ast-grep
-      biome
-      lua-language-server
-      nil
-      nodePackages.bash-language-server
-      pyright
-      ruff
-      taplo
-      shellcheck
-      vscode-langservers-extracted
-
-      ## treesitter.lua
-      tree-sitter
-
-      ## typescript-tools.lua
-      typescript
-
-      ## vim-test
-      pkgs.luajit.pkgs.busted
-    ];
-
     sessionVariables = {
       EDITOR = "nvim";
     };
-  };
-
-  mise.tools = {
-    ## lspconfig.lua
-    "pipx:ty" = "latest";
   };
 }
