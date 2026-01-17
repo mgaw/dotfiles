@@ -32,7 +32,7 @@ gco() {
     elif [[ -n "$*" ]]; then
         gn checkout "$@"
     else
-        git for-each-ref --format='%(refname:short)' refs/heads | fzf | xargs git checkout
+        git for-each-ref --sort=-committerdate --format='%(refname:short)' refs/heads | fzf | xargs git checkout
     fi
 }
 
