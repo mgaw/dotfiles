@@ -25,7 +25,7 @@
       diff.renameLimit = 1500;
       fetch.prune = true;
       init.defaultBranch = "main";
-      merge.conflictStyle = "diff3";
+      merge.conflictStyle = "zdiff3";
       pull.rebase = true;
       rebase.autoStash = true;
 
