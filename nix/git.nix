@@ -33,8 +33,9 @@
       alias.set-base = ''!f() { git config set branch."$(git rev-parse --abbrev-ref HEAD)".base "$1"; }; f'';
     };
     ignores = [
-      "/.direnv"
       ".DS_STORE"
+      "/.direnv"
+      "/.nvim.lua"
     ];
   };
 

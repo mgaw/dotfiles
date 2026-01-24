@@ -73,6 +73,8 @@ vim.o.fixendofline = false
 -- For no lingering ^[
 vim.o.ttimeoutlen = 0
 
+vim.o.exrc = true
+
 vim.filetype.add({
     filename = {
         ['.envrc'] = 'sh',
