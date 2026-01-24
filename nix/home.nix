@@ -117,6 +117,7 @@ in
   homebrew = {
     casks = [
       "alfred"
+      "claude-code"
       "firefox"
       "ghostty"
       "istat-menus"
@@ -134,9 +135,6 @@ in
   };
 
   mise.tools = {
-    "npm:@anthropic-ai/claude-code" = "latest";
-    "npm:@google/gemini-cli" = "latest";
-
     uv = "latest";
     "pipx:llm" = {
       version = "latest";
