@@ -1,6 +1,6 @@
 local alt = require('lib.alt')
 local git = require('user.git').M
-local helpers = require('lib.mapping-helpers')
+local helpers = require('lib.keymap-helpers')
 local notebook = require('user.notebook').M
 local open_file = require('lib.open_file')
 local picker = require('lib.picker')
@@ -251,11 +251,6 @@ require('lib.set_keymaps')({
     ['<2-MiddleMouse>'] = function()
         utils.feed_keycodes_noremap('<LeftMouse>')
         helpers.references[1]()
-    end,
-
-    -- reload mappings
-    grm = function()
-        dofile(vim.fn.stdpath('config') .. '/lua/user/mappings.lua')
     end,
 
     gre = { nx = ':Refactor extract_var<CR>' },

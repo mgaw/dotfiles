@@ -10,12 +10,11 @@
 -- * Lua reference manual: http://www.lua.org/manual/5.3/manual.html
 -- * Neovim Lua guide: https://github.com/nanotee/nvim-lua-guide
 
-require('user.mappings')
-require('user.commands')
-require('user.settings')
-
 require('user.autocmd')
-require('user.highlights')
+require('user.command')
+require('user.highlight')
+require('user.keymap')
+require('user.option')
 
 require('user.lazy_bootstrap')
 
