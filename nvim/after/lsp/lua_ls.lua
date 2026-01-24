@@ -3,6 +3,9 @@ return {
     settings = {
         -- https://github.com/LuaLS/lua-language-server/blob/master/script/config/template.lua
         Lua = {
+            diagnostics = {
+                globals = { 'vim' },
+            },
             telemetry = { enable = false },
             completion = {
                 -- The friendly-snippets snippets are better.
