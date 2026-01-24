@@ -36,8 +36,7 @@ return {
             sh = { 'shfmt', 'injected' }, -- shfmt configured in .editorconfig
             zsh = { 'shfmt' }, -- shfmt configured in .editorconfig
             lua = { 'stylua' },
-            php = { 'php_cs_fixer' },
-            less = { 'stylelint', 'prettier' },
+            less = { 'prettier' },
             html = { 'prettier' },
             yaml = { 'prettier' },
             xml = { 'xmllint' },
