@@ -8,7 +8,6 @@
 --   * https://neovim.io/doc/user/builtin.html
 -- * Lua helpers (vim.*): https://neovim.io/doc/user/lua.html#lua-vim
 -- * Lua reference manual: http://www.lua.org/manual/5.3/manual.html
--- * Neovim Lua guide: https://github.com/nanotee/nvim-lua-guide
 
 require('user.autocmd')
 require('user.command')
