@@ -21,6 +21,18 @@ function M.not_implemented(name)
     vim.notify(name .. ' not implemented for ft=' .. vim.o.filetype, vim.log.levels.WARN)
 end
 
+---@param cmd string[]
+---@return string
+function M.system(cmd)
+    return vim.trim(vim.system(cmd):wait().stdout)
+end
+
+--- @param cmd string[]
+function M.systemlist(cmd)
+    local stdout = vim.system(cmd, { text = true }):wait().stdout
+    return vim.split(stdout, '\n', { plain = true, trimempty = true })
+end
+
 function _G.log(value)
     print(vim.inspect(value))
     return value

@@ -1,3 +1,7 @@
+local base = require('lib.base')
+local git = require('user.git').M
+local utils = require('lib.utils')
+
 vim.api.nvim_create_user_command('WQ', 'wq', {})
 vim.api.nvim_create_user_command('Wq', 'wq', {})
 vim.api.nvim_create_user_command('Q', 'q', {})
@@ -17,18 +21,20 @@ vim.api.nvim_create_user_command('RenameFile', function()
 end, {})
 
 vim.api.nvim_create_user_command('Review', function()
-    local base_merge_base = require('lib.base').get_base_merge_base()
+    local base_merge_base = base.get_base_merge_base()
     if not base_merge_base then
         return
     end
 
-    for _, file in ipairs(vim.fn.systemlist('git diff --name-only ' .. base_merge_base)) do
-        vim.cmd('edit ' .. vim.fn.fnameescape(file))
+    require('gitsigns').change_base(base_merge_base, true)
+    git.configure_gitsigns({ show_deleted = true })
+
+    for file in vim.iter(utils.systemlist({ 'git', 'diff', '--name-only', base_merge_base })) do
+        vim.cmd.badd(file)
     end
 
-    vim.defer_fn(function()
-        -- not sure why this needs to be deferred
-        vim.cmd('Gitsigns change_base ' .. base_merge_base .. ' true')
-    end, 100)
-    vim.cmd('Gitsigns toggle_deleted') -- show deleted lines as virtual lines
+    -- Delete empty initial buffer
+    if vim.api.nvim_buf_get_name(0) == '' and vim.api.nvim_buf_line_count(0) <= 1 then
+        vim.api.nvim_buf_delete(0, {})
+    end
 end, {})
