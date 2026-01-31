@@ -27,10 +27,6 @@ vim() {
 }
 
 vis() { # VIm Status
-    nvim -c "lua require('lib.picker').git_status()"
-}
-
-vid() { # VIm Diff
     {
         # tracked files different from HEAD (staged + unstaged)
         git diff --name-only -z HEAD
