@@ -62,3 +62,40 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
     desc = 'Set iskeyword for less files',
 })
+
+local deny_restore_cursor_ft = {
+    gitcommit = true,
+    gitrebase = true,
+    git = true,
+}
+
+local function set_cursor_and_center(line)
+    vim.cmd.normal({ args = { line .. 'Gzz' }, bang = true })
+end
+
+vim.api.nvim_create_autocmd('BufRead', {
+    callback = function(opts)
+        vim.api.nvim_create_autocmd('BufWinEnter', {
+            once = true,
+            buffer = opts.buf,
+            callback = function()
+                if deny_restore_cursor_ft[vim.bo.filetype] then
+                    return
+                end
+
+                if vim.b.set_cursor_line then
+                    set_cursor_and_center(vim.b.set_cursor_line)
+                    return
+                end
+
+                local mark = vim.api.nvim_buf_get_mark(0, '"')
+                local line = mark[1]
+                local line_count = vim.api.nvim_buf_line_count(0)
+                if line > 0 and line <= line_count then
+                    set_cursor_and_center(line)
+                end
+            end,
+        })
+    end,
+    desc = 'Restore cursor to last known position',
+})

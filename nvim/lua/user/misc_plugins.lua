@@ -28,18 +28,6 @@ return {
     -- Repeat more things, such as surround commands
     'https://github.com/tpope/vim-repeat',
 
-    -- Jump to last known cursor position in file
-    {
-        'https://github.com/ethanholz/nvim-lastplace',
-        opts = {
-            lastplace_ignore_filetype = {
-                'gitcommit',
-                'gitrebase',
-                'git',
-            },
-        },
-    },
-
     -- Sets it up so that telescope is used for vim.ui.select
     -- (e.g. LSP code actions).
     --
