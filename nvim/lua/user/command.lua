@@ -31,6 +31,15 @@ vim.api.nvim_create_user_command('Review', function()
 
     for file in vim.iter(utils.systemlist({ 'git', 'diff', '--name-only', base_merge_base })) do
         vim.cmd.badd(file)
+        local bufnr = vim.fn.bufnr(file)
+
+        for _, line in ipairs(utils.systemlist({ 'git', 'diff', '--unified=0', base_merge_base, '--', file })) do
+            local start_line = line:match('^@@ .* %+(%d+)')
+            if start_line then
+                vim.b[bufnr].set_cursor_line = tonumber(start_line)
+                break
+            end
+        end
     end
 
     -- Delete empty initial buffer
