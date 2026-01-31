@@ -174,7 +174,9 @@ require('lib.set_keymaps')({
         run_file.run_file()
     end,
     [alt.shift.e] = function()
-        notebook.run_all_cells()
+        if vim.bo.filetype == 'quarto' then
+            notebook.run_all_cells()
+        end
     end,
 
     ['<C-p>'] = vim.diagnostic.goto_prev,
