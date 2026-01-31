@@ -156,6 +156,14 @@
         selectedCycleSizes = 18; # Cycle 1/2 and 3/4
         windowSnapping = 2; # Disable "Snap windows by dragging"
         SUEnableAutomaticChecks = 1;
+        firstThreeFourths = {
+          modifierFlags = 1310720; # Cmd+Ctrl
+          keyCode = 123; # Left
+        };
+        lastThreeFourths = {
+          modifierFlags = 1310720; # Cmd+Ctrl
+          keyCode = 124; # Right
+        };
       };
       "com.ranchero.NetNewsWire-Evergreen" = {
         SUEnableAutomaticChecks = true;
