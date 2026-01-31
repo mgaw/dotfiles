@@ -25,6 +25,7 @@
       tools = config.mise.tools;
       settings = {
         idiomatic_version_file_enable_tools = [ ];
+        experimental = true;
       };
     };
   };
