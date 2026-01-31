@@ -28,4 +28,8 @@
       };
     };
   };
+
+  config.programs.git.ignores = [
+    "/mise.local.toml"
+  ];
 }
