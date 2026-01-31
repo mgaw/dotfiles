@@ -128,7 +128,7 @@ require('lib.set_keymaps')({
 
     [alt['.']] = {
         function()
-            local merge_base = vim.fn.trim(vim.fn.system({ 'git', 'merge-base', 'HEAD', git.other_head() }))
+            local merge_base = vim.trim(vim.fn.system({ 'git', 'merge-base', 'HEAD', git.other_head() }))
             terminal.scratch_terminal(
                 { 'git', 'diff', merge_base, 'HEAD', '--', vim.api.nvim_buf_get_name(0) },
                 { env = git.PAGED, quit_on_exit = true }
@@ -139,7 +139,7 @@ require('lib.set_keymaps')({
     [alt.shift['.']] = {
         function()
             local other_head = git.other_head()
-            local merge_base = vim.fn.trim(vim.fn.system({ 'git', 'merge-base', 'HEAD', other_head }))
+            local merge_base = vim.trim(vim.fn.system({ 'git', 'merge-base', 'HEAD', other_head }))
             terminal.scratch_terminal(
                 { 'git', 'diff', merge_base, other_head, '--', vim.api.nvim_buf_get_name(0) },
                 { env = git.PAGED, quit_on_exit = true }

@@ -14,7 +14,7 @@ end
 
 local function ensure_kernel(kernel_name)
     -- Kernels are installed in ~/Library/Jupyter/kernels
-    vim.fn.system('python -m ipykernel install --user --name ' .. vim.fn.shellescape(kernel_name))
+    vim.fn.system({ 'python', '-m', 'ipykernel', 'install', '--user', '--name', kernel_name })
 end
 
 function M.run_all_cells()

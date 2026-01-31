@@ -7,7 +7,7 @@ local M = {}
 M.PAGED = { GIT_PAGER = 'less -+F' }
 
 function M.other_head()
-    return vim.fn.trim(vim.fn.system('ls .git | grep -e MERGE_HEAD -e REBASE_HEAD -e CHERRY_PICK_HEAD'))
+    return vim.trim(vim.fn.system('ls .git | grep -e MERGE_HEAD -e REBASE_HEAD -e CHERRY_PICK_HEAD'))
 end
 
 -- *Inline are word_diff highlight groups.
