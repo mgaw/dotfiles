@@ -5,6 +5,11 @@
   ...
 }:
 
+# Using home manager to manage global mise config but otherwise use directly installed mise
+# to have access to the latest version.
+let
+  miseBin = "${config.home.homeDirectory}/.local/bin/mise";
+in
 {
   options.mise = {
     tools = lib.mkOption {
@@ -14,13 +19,22 @@
 
   config.home.activation = {
     miseInstall = lib.hm.dag.entryAfter [ "writeBoundary" ] /* sh */ ''
-      PATH="${pkgs.nodejs}/bin:${pkgs.mise}/bin:$PATH" run mise install
+      if [ ! -f "${miseBin}" ]; then
+        export PATH="${pkgs.gzip}/bin:${pkgs.gnutar}/bin:${pkgs.curl}/bin:$PATH"
+        # https://mise.jdx.dev/getting-started.html#installing-mise-cli
+        run curl -fsS https://mise.run | sh
+      fi
+    '';
+
+    miseInstallTools = lib.hm.dag.entryAfter [ "writeBoundary" "miseDownload" ] /* sh */ ''
+      PATH="${pkgs.nodejs}/bin:$PATH" run ${miseBin} install
     '';
   };
 
   config.programs.mise = {
     enable = true;
-    enableZshIntegration = true;
+    enableZshIntegration = false;
+    package = pkgs.writeShellScriptBin "mise" ''exec ${miseBin} "$@"'';
     globalConfig = {
       tools = config.mise.tools;
       settings = {
@@ -29,6 +43,8 @@
       };
     };
   };
+
+  config.programs.zsh.initContent = /* zsh */ ''eval "$(${miseBin} activate zsh)"'';
 
   config.programs.git.ignores = [
     "/mise.local.toml"
