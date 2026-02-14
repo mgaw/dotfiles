@@ -278,6 +278,11 @@ require('lib.set_keymaps')({
     cp = '<Plug>(git-conflict-next-conflict)',
 
     -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects#built-in-textobjects
+    as = {
+        xo = function()
+            require('nvim-treesitter-textobjects.select').select_textobject('@statement.outer', 'textobjects')
+        end,
+    },
     af = {
         xo = function()
             require('nvim-treesitter-textobjects.select').select_textobject('@function.outer', 'textobjects')
