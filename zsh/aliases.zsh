@@ -3,13 +3,14 @@ src2() { cd "$HOME"/nobackup/src; }
 df() { cd ~/src/dotfiles; }
 dff() { (df && nvim -c OpenFile); }
 dfu() {
-    mise up
+    mise self-update --yes
     brew update
-    brew upgrade
     nix flake update --flake ~/src/dotfiles --commit-lock-file
     home-manager switch --flake ~/src/dotfiles --impure
     nvim -c "lua require('lazy').sync({ wait = true })"
     git -C ~/src/dotfiles commit -m 'nvim/lazy-lock.json: Update' -- nvim/lazy-lock.json
+    mise up
+    brew upgrade
     softwareupdate --install --list
 }
 
