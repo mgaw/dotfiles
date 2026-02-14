@@ -2,7 +2,7 @@ return {
     'https://github.com/neovim/nvim-lspconfig',
     config = function()
         vim.lsp.config('*', {
-            on_init = function(client)
+            on_attach = function(client)
                 client.server_capabilities.semanticTokensProvider = nil
             end,
             capabilities = require('cmp_nvim_lsp').default_capabilities(),
