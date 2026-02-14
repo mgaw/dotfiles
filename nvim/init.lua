@@ -35,6 +35,5 @@ require('lazy').setup({
     require('user.notebook'),
     require('user.terminal'),
 }, {
-    -- lua rocks are installed via home manager programs.neovim.extraLuaPackages
     rocks = { enabled = false },
 })

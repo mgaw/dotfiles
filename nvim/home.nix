@@ -14,11 +14,6 @@ in
         jupyter-client # molten-nvim
       ];
 
-    extraLuaPackages =
-      ps: with ps; [
-        magick # image.nvim
-      ];
-
     extraPackages = [
       pkgs.tree-sitter # treesitter.lua
     ];
