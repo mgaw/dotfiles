@@ -70,7 +70,6 @@ in
       biome
       nodejs
       prettier
-      typescript
       vscode-langservers-extracted
 
       ## lua
@@ -144,6 +143,7 @@ in
       uvx_args = "--with llm-mlx";
     };
     "pipx:ty" = "latest";
+    "npm:@vtsls/language-server" = "latest";
   };
 
   programs = {

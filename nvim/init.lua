@@ -28,7 +28,6 @@ require('lazy').setup({
     require('plugins.snacks'),
     require('plugins.telescope'),
     require('plugins.treesitter'),
-    require('plugins.typescript-tools'),
     require('plugins.vim-test'),
 
     require('user.git'),

@@ -20,6 +20,7 @@ return {
             'pyright',
             'ruff',
             'taplo',
+            'vtsls',
         })
     end,
 }
