@@ -17,7 +17,7 @@ return {
 
         local disable_treesitter = {
             'gitcommit', -- doesn't highlight diff
-            'gitrebase', -- could avoid this one by defining the highlight groups
+            'git_rebase', -- could avoid this one by defining the highlight groups
             'csv',
         }
 
