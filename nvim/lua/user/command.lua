@@ -19,6 +19,11 @@ vim.api.nvim_create_user_command('RenameFile', function()
     Snacks.rename.rename_file()
 end, {})
 
+vim.api.nvim_create_user_command('Approve', function()
+    vim.fn.system({ 'gh', 'pr', 'review', '--approve' })
+    vim.cmd.quit()
+end, {})
+
 vim.api.nvim_create_user_command('Review', function()
     local base_merge_base = base.get_base_merge_base()
     if not base_merge_base then
