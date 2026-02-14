@@ -77,11 +77,11 @@ vim.o.exrc = true
 
 vim.filetype.add({
     filename = {
-        ['.envrc'] = 'sh',
         ['.eslintrc.json'] = 'jsonc',
         ['tsconfig.json'] = 'jsonc',
     },
     pattern = {
+        ['.*envrc.*'] = 'sh',
         ['.*/templates/.*%.ya?ml'] = 'helm',
         ['.*/%.vscode/.*%.json'] = 'jsonc',
     },
