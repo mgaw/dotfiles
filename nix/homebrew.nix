@@ -40,6 +40,6 @@ in
       run /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
 
-    run /opt/homebrew/bin/brew bundle --file ${brewfileFile} --cleanup --verbose
+    run /opt/homebrew/bin/brew bundle --file ${brewfileFile} --cleanup
   '';
 }
