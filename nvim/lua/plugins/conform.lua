@@ -43,6 +43,7 @@ return {
             nix = { 'injected' },
             markdown = { 'injected' },
             quarto = { 'injected' },
+            toml = { 'injected' },
         },
     },
 }
