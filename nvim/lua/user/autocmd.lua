@@ -63,7 +63,7 @@ vim.api.nvim_create_autocmd('FileType', {
     desc = 'Set iskeyword for less files',
 })
 
-local deny_restore_cursor_ft = {
+local restore_cursor_disable_ft = {
     gitcommit = true,
     gitrebase = true,
     git = true,
@@ -79,7 +79,7 @@ vim.api.nvim_create_autocmd('BufRead', {
             once = true,
             buffer = opts.buf,
             callback = function()
-                if deny_restore_cursor_ft[vim.bo.filetype] then
+                if restore_cursor_disable_ft[vim.bo.filetype] then
                     return
                 end
 
