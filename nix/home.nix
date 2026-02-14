@@ -40,6 +40,9 @@ in
       ".config/ghostty/config".source = mkDotfilesSymlink "ghostty/config";
       ".config/karabiner".source = mkDotfilesSymlink "karabiner";
       ".hushlogin".text = ""; # suppress "Last login" message in new terminal tabs
+      # Avoid "installMethod is native, but claude command not found at ~/.local/bin/claude"
+      ".local/bin/claude".source =
+        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.local/share/mise/shims/claude";
     };
 
     packages = with pkgs; [
@@ -117,7 +120,6 @@ in
   homebrew = {
     casks = [
       "alfred"
-      "claude-code"
       "firefox"
       "ghostty"
       "istat-menus"
@@ -135,6 +137,7 @@ in
   };
 
   mise.tools = {
+    claude = "latest";
     uv = "latest";
     "pipx:llm" = {
       version = "latest";
