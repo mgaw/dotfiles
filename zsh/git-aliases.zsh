@@ -118,7 +118,9 @@ get_commit() {
     gl | fzf --ansi | sed 's/\x1b\[[0-9;]*m//g' | grep -oE '\b[0-9a-f]{7,}\b' | head -1
 }
 gcf() {
-    git commit --fixup "$(get_commit)" && git rebase --interactive --autosquash
+    local commit="$(get_commit)"
+    git commit --fixup "$commit"
+    GIT_SEQUENCE_EDITOR=: git rebase --interactive --autosquash "$commit"^
 }
 cf() {
     git add --all && gcf
