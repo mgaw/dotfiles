@@ -89,7 +89,7 @@ alias gsta='gst apply'
 
 # add
 alias ga='gn add'
-alias gap='ga -p'
+alias gap='ga --patch'
 alias gaa='git add --all'
 
 # commit
@@ -112,6 +112,7 @@ gac() { ga "$@" && gc; }
 gaca() { ga "$@" && gca; }
 gaac() { gaa && gc "$@"; }
 gaaca() { gaa && gca "$@"; }
+gapc() { ga --patch "$@" && gc; }
 c() { gaac; }
 a() { gaaca --no-edit; }
 get_commit() {
