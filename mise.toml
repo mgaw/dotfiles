@@ -13,5 +13,6 @@ test = [
 ]
 lint = [
     "lua-language-server --check=nvim",
+    "nil diagnostics --deny-warnings **/*.nix",
     "shellcheck **/*.sh",
 ]
