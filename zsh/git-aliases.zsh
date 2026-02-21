@@ -115,7 +115,7 @@ gaaca() { gaa && gca "$@"; }
 c() { gaac; }
 a() { gaaca --no-edit; }
 get_commit() {
-    git log --oneline --no-color | fzf | sed 's/^\([a-z0-9]*\).*/\1/'
+    gl | fzf --ansi | sed 's/\x1b\[[0-9;]*m//g' | grep -oE '\b[0-9a-f]{7,}\b' | head -1
 }
 gcf() {
     git commit --fixup "$(get_commit)" && git rebase --interactive --autosquash
@@ -145,16 +145,15 @@ alias gcpc='git cherry-pick --continue'
 alias gcpa='git cherry-pick --abort'
 
 # log
-pretty() {
+gl() {
     local commit_hash='%C(yellow)%h'
     local date='%C(green)%cr'
     local ref='%C(auto)%d'
     local author='%C(white)%<(18,trunc)%an%Creset' # reset bold
     local message='%Creset%s'
-    echo "--color --pretty='$author $commit_hash$ref $message' --abbrev-commit"
+    git log --color --pretty="$author $commit_hash$ref $message" --abbrev-commit --first-parent "$@"
 }
-alias gl="git log $(pretty) --first-parent"
-alias glg="git log $(pretty) --graph"
+glg() { gl --graph "$@"; }
 alias gla='gl --all'
 alias glga='glg --all'
 
