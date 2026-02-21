@@ -31,3 +31,45 @@
       (string) @injection.content
       (#set! injection.language "sh")
       (#offset! @injection.content 0 1 0 -1))))
+
+; Dotted table style: [tasks.name] \n run = """shell command"""
+(table
+  (dotted_key
+    (bare_key) @_table_name
+    (bare_key)
+    (#eq? @_table_name "tasks"))
+  (pair
+    (bare_key) @_key_name
+    (#eq? @_key_name "run")
+    (string) @injection.content
+    (#match? @injection.content "^\"\"\"")
+    (#set! injection.language "sh")
+    (#offset! @injection.content 0 3 0 -3)))
+
+; Dotted table style: [tasks.name] \n run = "shell command"
+(table
+  (dotted_key
+    (bare_key) @_table_name
+    (bare_key)
+    (#eq? @_table_name "tasks"))
+  (pair
+    (bare_key) @_key_name
+    (#eq? @_key_name "run")
+    (string) @injection.content
+    (#not-match? @injection.content "^\"\"\"")
+    (#set! injection.language "sh")
+    (#offset! @injection.content 0 1 0 -1)))
+
+; Dotted table style: [tasks.name] \n run = ["cmd1", "cmd2"]
+(table
+  (dotted_key
+    (bare_key) @_table_name
+    (bare_key)
+    (#eq? @_table_name "tasks"))
+  (pair
+    (bare_key) @_key_name
+    (#eq? @_key_name "run")
+    (array
+      (string) @injection.content
+      (#set! injection.language "sh")
+      (#offset! @injection.content 0 1 0 -1))))
