@@ -13,4 +13,5 @@ test = [
 ]
 lint = [
     "lua-language-server --check=nvim",
+    "shellcheck **/*.sh",
 ]
