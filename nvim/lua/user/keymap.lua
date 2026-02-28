@@ -210,8 +210,7 @@ require('lib.set_keymaps')({
         end,
         desc = 'Resume references',
     },
-    ['Ä'] = '<Cmd>Telescope hierarchy incoming_calls<CR>',
-    -- should resume incoming calls picker
+    -- ['Ä']
     -- [alt.shift['ä']]
 
     -- [alt['/']]

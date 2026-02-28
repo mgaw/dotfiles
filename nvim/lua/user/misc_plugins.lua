@@ -28,17 +28,6 @@ return {
     -- Repeat more things, such as surround commands
     'https://github.com/tpope/vim-repeat',
 
-    -- Sets it up so that telescope is used for vim.ui.select
-    -- (e.g. LSP code actions).
-    --
-    -- Also, gives an popup input field, e.g. for rename.
-    --
-    -- Even keeps telescope lazy-loading intact.
-    {
-        'https://github.com/stevearc/dressing.nvim',
-        event = 'VeryLazy',
-    },
-
     {
         'https://github.com/nvim-lua/lsp-status.nvim',
         config = function()

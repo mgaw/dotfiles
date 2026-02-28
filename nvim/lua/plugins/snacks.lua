@@ -3,6 +3,16 @@ vim.api.nvim_set_hl(0, 'DiffChange', { bg = nil })
 return {
     'https://github.com/folke/snacks.nvim',
     opts = {
+        input = {
+            icon = '',
+            enabled = true,
+        },
+        styles = {
+            input = {
+                relative = 'cursor',
+            },
+        },
+
         -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#%EF%B8%8F-config
         picker = {
             previewers = {
