@@ -160,6 +160,7 @@ in
         hide_env_diff = true;
       };
       nix-direnv.enable = true;
+      stdlib = builtins.readFile ./run_if_changed.sh;
     };
 
     fzf = {
