@@ -7,6 +7,7 @@ return {
 
         vim.treesitter.language.register('scss', 'less')
         vim.treesitter.language.register('bash', 'zsh')
+        vim.treesitter.language.register('json', 'jsonl')
 
         -- Explicitly install parsers that are typically only injected
         nvim_treesitter.install({
