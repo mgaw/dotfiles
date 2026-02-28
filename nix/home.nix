@@ -134,14 +134,14 @@ in
   };
 
   mise.tools = {
-    claude = "latest";
-    uv = "latest";
+    "npm:@vtsls/language-server" = "latest";
     "pipx:llm" = {
       version = "latest";
       uvx_args = "--with llm-mlx";
     };
     "pipx:ty" = "latest";
-    "npm:@vtsls/language-server" = "latest";
+    claude = "latest";
+    uv = "latest";
   };
 
   programs = {
