@@ -96,13 +96,11 @@ in
       ffmpeg # convert video and audio
       imagemagick # convert images
       qrencode
-      yt-dlp
 
       # data
       jq # json
       miller # csv, tsv, jsonl
       perlPackages.AppSt # quick stats
-      python3Packages.termgraph
       sqlite
 
       # docs
