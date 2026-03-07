@@ -11,4 +11,9 @@
   mise.tools = {
     claude = "latest";
   };
+
+  programs.git.ignores = [
+    "/.claude/settings.local.json"
+    "/CLAUDE.local.md"
+  ];
 }
