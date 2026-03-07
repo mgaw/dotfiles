@@ -97,13 +97,11 @@
     casks = [
       "alfred"
       "firefox"
-      "istat-menus"
       "logi-options+"
       "netnewswire"
       "rectangle"
       "spotify"
       "tableplus"
-      "yubico-authenticator"
     ];
   };
 
