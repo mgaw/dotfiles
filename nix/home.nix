@@ -79,7 +79,6 @@ in
       stylua
 
       ## python
-      pyright
       python3
       ruff
 

@@ -17,9 +17,9 @@ return {
             'html',
             'lua_ls',
             'nil_ls',
-            'pyright',
             'ruff',
             'taplo',
+            'ty',
             'vtsls',
         })
     end,
