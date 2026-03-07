@@ -1,5 +1,7 @@
+local alt = require('lib.alt')
 local base = require('lib.base')
 local git = require('user.git').M
+local nav_hunk = require('lib.nav_hunk')
 
 vim.api.nvim_create_user_command('WQ', 'wq', {})
 vim.api.nvim_create_user_command('Wq', 'wq', {})
@@ -50,4 +52,12 @@ vim.api.nvim_create_user_command('Review', function()
     if vim.api.nvim_buf_get_name(0) == '' and vim.api.nvim_buf_line_count(0) <= 1 then
         vim.api.nvim_buf_delete(0, {})
     end
+
+    -- Use cross-buffer hunk navigation in review mode
+    vim.keymap.set('n', alt.shift.n, function()
+        nav_hunk.nav_hunk('next', { center = true, cross_buffer = true })
+    end)
+    vim.keymap.set('n', alt.shift.p, function()
+        nav_hunk.nav_hunk('prev', { center = true, cross_buffer = true })
+    end)
 end, {})
