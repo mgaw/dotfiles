@@ -178,6 +178,20 @@ require('lib.set_keymaps')({
         end
     end,
 
+    [alt.c] = {
+        x = function()
+            local start_line = vim.fn.line('v')
+            local end_line = vim.fn.line('.')
+            if start_line > end_line then
+                start_line, end_line = end_line, start_line
+            end
+            local file = vim.api.nvim_buf_get_name(0)
+            local cmd = string.format('ccf %s %d-%d', vim.fn.shellescape(file), start_line, end_line)
+            vim.fn.setreg('+', cmd)
+            vim.notify(cmd)
+        end,
+    },
+
     ['<C-p>'] = vim.diagnostic.goto_prev,
     ['<C-n>'] = vim.diagnostic.goto_next,
     [alt.shift.w] = function()
