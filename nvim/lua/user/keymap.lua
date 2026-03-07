@@ -160,8 +160,7 @@ require('lib.set_keymaps')({
         vim.lsp.buf.code_action({ context = { only = { 'source.fixAll' } }, apply = true })
         require('conform').format({ lsp_fallback = 'always' })
     end,
-    -- replace
-    [alt.r] = { nx = ':GrugFar<CR>' },
+    -- [alt.r]
     -- rename
     [alt.shift.r] = {
         n = function()

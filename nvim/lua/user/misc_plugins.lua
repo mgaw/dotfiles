@@ -1,27 +1,14 @@
 return {
     {
         'https://github.com/windwp/nvim-autopairs',
-        config = function()
-            require('nvim-autopairs').setup({
-                disable_in_visualblock = true,
-            })
-
-            local npairs = require('nvim-autopairs')
-            local Rule = require('nvim-autopairs.rule')
-            npairs.add_rules({ Rule('“', '”') })
-        end,
+        opts = {
+            disable_in_visualblock = true,
+        },
         event = 'InsertEnter',
     },
 
     -- Auto-closes tags, and keeps closing tag in sync when using ciw
-    {
-        'https://github.com/windwp/nvim-ts-autotag',
-        dependencies = {
-            'https://github.com/nvim-treesitter/nvim-treesitter',
-        },
-        opts = {},
-        ft = { 'html', 'javascriptreact', 'typescriptreact', 'tsx', 'jsx', 'xml', 'php' },
-    },
+    'https://github.com/windwp/nvim-ts-autotag',
 
     'https://github.com/tpope/vim-surround',
 
@@ -69,11 +56,6 @@ return {
     {
         'https://github.com/nvim-treesitter/nvim-treesitter-textobjects',
         branch = 'main',
-    },
-
-    {
-        'https://github.com/MagicDuck/grug-far.nvim',
-        opts = {},
     },
 
     -- scrollbar with cursor, window, gitsigns, diagnostics
