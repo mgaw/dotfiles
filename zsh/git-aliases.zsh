@@ -61,6 +61,15 @@ gcopr() {
         return 1
     }
 
+    if ! git diff --quiet || ! git diff --cached --quiet; then
+        read -r "REPLY?Working tree is dirty. Stash changes? [Y/n] "
+        if [[ -z "$REPLY" || "$REPLY" =~ ^[Yy]$ ]]; then
+            git stash
+        else
+            break
+        fi
+    fi
+
     echo "Checking out pull request #$pr_number..."
     gh pr checkout "$pr_number"
 }
