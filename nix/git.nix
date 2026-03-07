@@ -34,7 +34,6 @@
     };
     ignores = [
       ".DS_STORE"
-      "/.direnv"
     ];
   };
 

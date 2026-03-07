@@ -1,9 +1,5 @@
 { config, pkgs, ... }:
 
-let
-  inherit (import ../nix/utils.nix config) mkDotfilesSymlink;
-in
-
 {
   programs.neovim = {
     enable = true;
@@ -33,7 +29,7 @@ in
 
   home = {
     file = {
-      ".config/nvim".source = mkDotfilesSymlink "nvim";
+      ".config/nvim".source = config.utils.mkDotfilesSymlink "nvim";
 
       ".prettierrc.yaml".text = /* yaml */ ''
         tabWidth: 4

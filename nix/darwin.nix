@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  username,
+  ...
+}:
 
 # Not automated:
 # - Alfred
@@ -11,6 +16,11 @@
 #   - "up" button to Ctrl-H and "down" button to Ctrl-L for buffer navigation in vim.
 
 {
+  home = {
+    inherit username;
+    homeDirectory = "/Users/${username}";
+  };
+
   home.activation = {
     # Lock Screen -> Require password after [...]: Immediately
     setScreenLock = lib.hm.dag.entryAfter [ "writeBoundary" ] /* sh */ ''

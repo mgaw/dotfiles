@@ -1,13 +1,15 @@
 { config, pkgs, ... }:
 
-let
-  inherit (import ../nix/utils.nix config) dotfiles;
-in
-
 {
+  home.file.".hushlogin".text = ""; # suppress "Last login" message in new terminal tabs
+
   home.packages = [
     pkgs.zsh-completions
   ];
+
+  home.sessionVariables = {
+    LC_ALL = "en_US.UTF-8";
+  };
 
   programs.zsh = {
     enable = true;
@@ -39,10 +41,10 @@ in
       # https://zsh.sourceforge.io/Doc/Release/Options.html
       setopt INC_APPEND_HISTORY
       setopt GLOBDOTS
-      source ${dotfiles}/zsh/aliases.zsh
-      source ${dotfiles}/zsh/git-aliases.zsh
-      source ${dotfiles}/zsh/bindkey.zsh
-      source ${dotfiles}/zsh/ps1.zsh
+      source ${config.utils.dotfiles}/zsh/aliases.zsh
+      source ${config.utils.dotfiles}/zsh/git-aliases.zsh
+      source ${config.utils.dotfiles}/zsh/bindkey.zsh
+      source ${config.utils.dotfiles}/zsh/ps1.zsh
     '';
   };
 }
