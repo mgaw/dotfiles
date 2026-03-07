@@ -124,11 +124,8 @@ in
       "netnewswire"
       "rectangle"
       "spotify"
+      "tableplus"
       "yubico-authenticator"
-
-      # databases
-      "base" # sqlite
-      "db-browser-for-sqlite"
     ];
   };
 
