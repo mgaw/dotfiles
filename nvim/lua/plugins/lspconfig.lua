@@ -18,6 +18,7 @@ return {
             'lua_ls',
             'nil_ls',
             'ruff',
+            'stylua',
             'taplo',
             'ty',
             'vtsls',

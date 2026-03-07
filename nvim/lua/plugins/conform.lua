@@ -35,7 +35,6 @@ return {
             python = { 'ruff_organize_imports', 'injected' },
             sh = { 'shfmt', 'injected' }, -- shfmt configured in .editorconfig
             zsh = { 'shfmt' }, -- shfmt configured in .editorconfig
-            lua = { 'stylua' },
             less = { 'prettier' },
             html = { 'prettier' },
             yaml = { 'prettier' },
