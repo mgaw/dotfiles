@@ -35,7 +35,6 @@
     ignores = [
       ".DS_STORE"
       "/.direnv"
-      "/.nvim.lua"
     ];
   };
 

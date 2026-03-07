@@ -63,4 +63,8 @@ in
       EDITOR = "nvim";
     };
   };
+
+  programs.git.ignores = [
+    "/.nvim.lua"
+  ];
 }
