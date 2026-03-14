@@ -31,6 +31,10 @@ in
     '';
   };
 
+  config.mise.tools = {
+    usage = "latest"; # required by mise completions
+  };
+
   config.programs.mise = {
     enable = true;
     enableZshIntegration = false;
@@ -44,7 +48,10 @@ in
     };
   };
 
-  config.programs.zsh.initContent = /* zsh */ ''eval "$(${miseBin} activate zsh)"'';
+  config.programs.zsh.initContent = /* zsh */ ''
+    eval "$(${miseBin} activate zsh)"
+    eval "$(${miseBin} completions zsh)"
+  '';
 
   config.programs.git.ignores = [
     "/mise.local.toml"
