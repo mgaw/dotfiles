@@ -21,6 +21,17 @@ function M.not_implemented(name)
     vim.notify(name .. ' not implemented for ft=' .. vim.o.filetype, vim.log.levels.WARN)
 end
 
+function M.cursor_in_comment()
+    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+    local captures = vim.treesitter.get_captures_at_pos(0, row - 1, math.max(0, col - 1))
+    for _, capture in ipairs(captures) do
+        if capture.capture == 'comment' then
+            return true
+        end
+    end
+    return false
+end
+
 function _G.log(value)
     print(vim.inspect(value))
     return value

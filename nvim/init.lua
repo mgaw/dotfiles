@@ -20,7 +20,7 @@ require('user.lazy_bootstrap')
 -- https://lazy.folke.io/spec
 require('lazy').setup({
     require('plugins.aerial'),
-    require('plugins.cmp'),
+    require('plugins.blink'),
     require('plugins.conform'),
     require('plugins.illuminate'),
     require('plugins.lspconfig'),

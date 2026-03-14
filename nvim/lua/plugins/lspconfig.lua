@@ -5,7 +5,6 @@ return {
             on_attach = function(client)
                 client.server_capabilities.semanticTokensProvider = nil
             end,
-            capabilities = require('cmp_nvim_lsp').default_capabilities(),
         })
 
         -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md

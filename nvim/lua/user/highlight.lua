@@ -84,7 +84,7 @@ require('lib.set_highlights')({
         '@type.qualifier',
     },
 
-    Comment = { colors.mid_grey_blue, italic = true },
+    Comment = { colors.mid_grey_blue, italic = true, 'PmenuExtra' },
     Todo = { colors.grey_blue, italic = true, bold = true, '@comment.todo.comment' },
     Underlined = { colors.white, underline = true },
     NonText = colors.lightgrey,
