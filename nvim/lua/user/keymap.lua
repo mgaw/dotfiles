@@ -1,4 +1,5 @@
 local alt = require('lib.alt')
+local claude = require('lib.claude')
 local git = require('user.git').M
 local helpers = require('lib.keymap-helpers')
 local notebook = require('user.notebook').M
@@ -180,15 +181,12 @@ require('lib.set_keymaps')({
 
     [alt.c] = {
         x = function()
-            local start_line = vim.fn.line('v')
-            local end_line = vim.fn.line('.')
-            if start_line > end_line then
-                start_line, end_line = end_line, start_line
-            end
-            local file = vim.api.nvim_buf_get_name(0)
-            local cmd = string.format('ccf %s %d-%d', vim.fn.shellescape(file), start_line, end_line)
-            vim.fn.setreg('+', cmd)
-            vim.notify(cmd)
+            claude.send_selection_to_claude()
+        end,
+    },
+    [alt.shift.c] = {
+        x = function()
+            claude.send_selection_to_claude({ plan_mode = true })
         end,
     },
 

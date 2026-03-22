@@ -113,20 +113,6 @@ kns() {
 
 alias cc=claude
 
-ccf() {
-    local file=$1
-    local range=$2
-    {
-        echo "\`$file\` lines $range:"
-        echo
-        local start=${range%-*}
-        local end=${range#*-}
-        echo '```'
-        sed -n "${start},${end}p" "$file"
-        echo '```'
-    } | vipe --suffix md | claude
-}
-
 alias ag="rg --smart-case --sort-files --hidden --glob '!.git/*'"
 
 # search and replace
