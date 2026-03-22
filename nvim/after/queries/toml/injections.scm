@@ -36,7 +36,7 @@
 (table
   (dotted_key
     (bare_key) @_table_name
-    (bare_key)
+    (_)
     (#eq? @_table_name "tasks"))
   (pair
     (bare_key) @_key_name
@@ -50,7 +50,7 @@
 (table
   (dotted_key
     (bare_key) @_table_name
-    (bare_key)
+    (_)
     (#eq? @_table_name "tasks"))
   (pair
     (bare_key) @_key_name
@@ -64,7 +64,7 @@
 (table
   (dotted_key
     (bare_key) @_table_name
-    (bare_key)
+    (_)
     (#eq? @_table_name "tasks"))
   (pair
     (bare_key) @_key_name
