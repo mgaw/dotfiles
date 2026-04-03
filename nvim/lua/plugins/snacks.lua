@@ -13,6 +13,10 @@ return {
             },
         },
 
+        words = {
+            debounce = 0,
+        },
+
         -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#%EF%B8%8F-config
         picker = {
             previewers = {

@@ -22,7 +22,6 @@ require('lazy').setup({
     require('plugins.aerial'),
     require('plugins.blink'),
     require('plugins.conform'),
-    require('plugins.illuminate'),
     require('plugins.lspconfig'),
     require('plugins.sidebar'),
     require('plugins.snacks'),
