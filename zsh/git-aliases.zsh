@@ -81,7 +81,7 @@ alias gds='gd --stat'
 alias gdcs='gdc --stat'
 alias gdu='gd @{upstream}'
 alias gduh='gd @{upstream} HEAD'
-alias gdsu='gds @{upstream}'
+alias gdus='gds @{upstream}'
 alias gdmb='gd --merge-base'
 gdf() {
     local branch=$(git rev-parse --abbrev-ref HEAD)
