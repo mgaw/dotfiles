@@ -44,6 +44,8 @@ in
       settings = {
         idiomatic_version_file_enable_tools = [ ];
         experimental = true;
+        # https://mise.jdx.dev/configuration/settings.html#install_before
+        install_before = "3d";
       };
     };
   };

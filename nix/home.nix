@@ -91,4 +91,20 @@
   programs = {
     bash.enable = true;
   };
+
+  xdg.configFile."uv/uv.toml".text = /* toml */ ''
+    # https://docs.astral.sh/uv/reference/settings/#exclude-newer
+    exclude-newer = "3 days"
+  '';
+
+  home.file.".npmrc".text = /* dosini */ ''
+    # https://docs.npmjs.com/cli/v11/commands/npm-install#min-release-age
+    min-release-age=3
+  '';
+
+  home.file.".yarnrc.yml".text = /* yaml */ ''
+    # https://yarnpkg.com/configuration/yarnrc#npmMinimalAgeGate
+    npmMinimalAgeGate: '3d'
+    enableTelemetry: 0
+  '';
 }
