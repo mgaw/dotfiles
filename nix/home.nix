@@ -48,7 +48,6 @@
     perlPackages.AppSt # quick stats
     python3
     qrencode
-    quarto
     sqlite
     tree
     yubikey-manager
