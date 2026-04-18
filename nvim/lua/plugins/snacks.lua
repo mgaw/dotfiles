@@ -2,6 +2,7 @@ vim.api.nvim_set_hl(0, 'DiffChange', { bg = nil })
 
 return {
     'https://github.com/folke/snacks.nvim',
+    version = '*',
     opts = {
         input = {
             icon = '',

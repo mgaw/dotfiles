@@ -40,6 +40,7 @@ end
 
 return {
     'https://github.com/stevearc/aerial.nvim',
+    version = '*',
     lazy = not should_auto_open(),
     cmd = 'AerialOpen',
     opts = {

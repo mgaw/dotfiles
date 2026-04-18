@@ -1,5 +1,6 @@
 return {
     'https://github.com/neovim/nvim-lspconfig',
+    version = '*',
     config = function()
         vim.lsp.config('*', {
             on_attach = function(client)

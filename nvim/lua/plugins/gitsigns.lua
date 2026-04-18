@@ -32,6 +32,7 @@ end
 
 return {
     'https://github.com/lewis6991/gitsigns.nvim',
+    version = '*',
     config = function()
         require('gitsigns').setup()
         M.configure({ show_deleted = false })
