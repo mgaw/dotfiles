@@ -46,7 +46,6 @@
     openssh
     pandoc
     perlPackages.AppSt # quick stats
-    python3
     qrencode
     sqlite
     tree
@@ -77,6 +76,7 @@
     lua-language-server = "latest";
     miller = "latest";
     node = "latest";
+    python = "latest";
     ripgrep = "latest";
     ruff = "latest";
     shellcheck = "latest";
