@@ -60,7 +60,7 @@ vim.o.showmode = false
 
 -- Always show status line
 vim.o.laststatus = 2
-vim.o.statusline = '%F' -- full file name
+vim.o.statusline = '%F %{%v:lua.vim.diagnostic.status()%} %{%v:lua.vim.ui.progress_status()%}'
 
 -- Do case-sensitive search when uppercase letter present,
 -- otherwise case-insensitive

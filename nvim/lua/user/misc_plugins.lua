@@ -16,15 +16,6 @@ return {
     'https://github.com/tpope/vim-repeat',
 
     {
-        'https://github.com/nvim-lua/lsp-status.nvim',
-        config = function()
-            require('lsp-status').register_progress()
-            vim.o.statusline = vim.o.statusline .. " %{v:lua.require('lsp-status').status_progress()}"
-        end,
-        event = 'LspAttach',
-    },
-
-    {
         'https://github.com/preservim/vim-markdown',
         config = function()
             -- https://github.com/preservim/vim-markdown/#options
