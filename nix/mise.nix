@@ -8,7 +8,8 @@
 # Using home manager to manage global mise config but otherwise use directly installed mise
 # to have access to the latest version.
 let
-  miseBin = "${config.home.homeDirectory}/.local/bin/mise";
+  miseBinPath = "${config.home.homeDirectory}/.local/bin";
+  miseBin = "${miseBinPath}/mise";
 in
 {
   options.mise = {
@@ -17,19 +18,15 @@ in
     };
   };
 
-  config.home.activation = {
-    miseInstall = lib.hm.dag.entryAfter [ "writeBoundary" ] /* sh */ ''
-      if [ ! -f "${miseBin}" ]; then
-        export PATH="${pkgs.gzip}/bin:${pkgs.gnutar}/bin:${pkgs.curl}/bin:$PATH"
-        # https://mise.jdx.dev/getting-started.html#installing-mise-cli
-        run curl -fsS https://mise.run | sh
-      fi
-    '';
+  config.home.activation.mise = lib.hm.dag.entryAfter [ "writeBoundary" ] /* sh */ ''
+    if [ ! -f "${miseBin}" ]; then
+      # https://mise.jdx.dev/getting-started.html#installing-mise-cli
+      run ${pkgs.curl}/bin/curl -fsS https://mise.run |
+        PATH="${pkgs.curl}/bin:${pkgs.gnutar}/bin:${pkgs.gzip}/bin:$PATH" sh
+    fi
 
-    miseInstallTools = lib.hm.dag.entryAfter [ "writeBoundary" "miseDownload" ] /* sh */ ''
-      PATH="${pkgs.nodejs}/bin:$PATH" run ${miseBin} install
-    '';
-  };
+    PATH="${pkgs.nodejs}/bin:${miseBinPath}:$PATH" run mise install
+  '';
 
   config.mise.tools = {
     usage = "latest"; # required by mise completions
