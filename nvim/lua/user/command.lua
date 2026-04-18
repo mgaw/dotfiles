@@ -1,6 +1,6 @@
 local alt = require('lib.alt')
 local base = require('lib.base')
-local git = require('user.git').M
+local gitsigns = require('plugins.gitsigns').M
 local nav_hunk = require('lib.nav_hunk')
 
 vim.api.nvim_create_user_command('WQ', 'wq', {})
@@ -39,7 +39,7 @@ vim.api.nvim_create_user_command('Review', function()
     end
 
     require('gitsigns').change_base(base_merge_base, true)
-    git.configure_gitsigns({ show_deleted = true })
+    gitsigns.configure({ show_deleted = true })
 
     for file in vim.iter(vim.fn.systemlist({ 'git', 'diff', '--name-only', base_merge_base })) do
         vim.cmd.badd(file)

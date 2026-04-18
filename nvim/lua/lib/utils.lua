@@ -32,6 +32,14 @@ function M.cursor_in_comment()
     return false
 end
 
+-- -+F to ensure that pager is always used to ensure that diff is visible
+-- if it fits to one screen
+M.PAGED = { GIT_PAGER = 'less -+F' }
+
+function M.other_head()
+    return vim.trim(vim.fn.system('ls .git | grep -e MERGE_HEAD -e REBASE_HEAD -e CHERRY_PICK_HEAD'))
+end
+
 function _G.log(value)
     print(vim.inspect(value))
     return value

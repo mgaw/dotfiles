@@ -1,6 +1,5 @@
 local alt = require('lib.alt')
 local claude = require('lib.claude')
-local git = require('user.git').M
 local helpers = require('lib.keymap-helpers')
 local notebook = require('user.notebook').M
 local open_file = require('lib.open_file')
@@ -85,7 +84,7 @@ require('lib.set_keymaps')({
     },
     [alt.shift.z] = open_file.open_other_file,
 
-    [alt.w] = terminal.term('git show', { env = git.PAGED }),
+    [alt.w] = terminal.term('git show', { env = utils.PAGED }),
     [alt.p] = terminal.term('git add --patch && git commit --verbose'),
     [alt.a] = '<Cmd>Git add %<CR>',
 
@@ -112,7 +111,7 @@ require('lib.set_keymaps')({
         function()
             terminal.scratch_terminal(
                 { 'git', 'log', '--patch', '--', vim.api.nvim_buf_get_name(0) },
-                { env = git.PAGED, quit_on_exit = true }
+                { env = utils.PAGED, quit_on_exit = true }
             )
         end,
         desc = 'Show history of current file',
@@ -120,8 +119,8 @@ require('lib.set_keymaps')({
     [alt.shift.l] = {
         function()
             terminal.scratch_terminal(
-                { 'git', 'log', '--patch', git.other_head(), '--', vim.api.nvim_buf_get_name(0) },
-                { env = git.PAGED, quit_on_exit = true }
+                { 'git', 'log', '--patch', utils.other_head(), '--', vim.api.nvim_buf_get_name(0) },
+                { env = utils.PAGED, quit_on_exit = true }
             )
         end,
         desc = 'Show history of current file (other head)',
@@ -129,21 +128,21 @@ require('lib.set_keymaps')({
 
     [alt['.']] = {
         function()
-            local merge_base = vim.trim(vim.fn.system({ 'git', 'merge-base', 'HEAD', git.other_head() }))
+            local merge_base = vim.trim(vim.fn.system({ 'git', 'merge-base', 'HEAD', utils.other_head() }))
             terminal.scratch_terminal(
                 { 'git', 'diff', merge_base, 'HEAD', '--', vim.api.nvim_buf_get_name(0) },
-                { env = git.PAGED, quit_on_exit = true }
+                { env = utils.PAGED, quit_on_exit = true }
             )
         end,
         desc = 'Diff merge base against HEAD',
     },
     [alt.shift['.']] = {
         function()
-            local other_head = git.other_head()
+            local other_head = utils.other_head()
             local merge_base = vim.trim(vim.fn.system({ 'git', 'merge-base', 'HEAD', other_head }))
             terminal.scratch_terminal(
                 { 'git', 'diff', merge_base, other_head, '--', vim.api.nvim_buf_get_name(0) },
-                { env = git.PAGED, quit_on_exit = true }
+                { env = utils.PAGED, quit_on_exit = true }
             )
         end,
         desc = 'Diff merge base against other head',
