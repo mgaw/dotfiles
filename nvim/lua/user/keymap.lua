@@ -151,10 +151,7 @@ require('lib.set_keymaps')({
 
     ['<C-q>'] = vim.lsp.buf.code_action,
 
-    [alt.s] = {
-        n = picker.git_status,
-        i = vim.lsp.buf.signature_help,
-    },
+    [alt.s] = picker.git_status,
     -- [alt.shift.s]
 
     [alt.shift.f] = function()
