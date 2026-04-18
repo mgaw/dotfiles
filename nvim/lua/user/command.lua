@@ -32,6 +32,12 @@ vim.api.nvim_create_user_command('Review', function()
         return
     end
 
+    local result = vim.system({ 'gh', 'pr', 'view', '--json', 'number,headRepository' }):wait()
+    if result.code == 0 then
+        local pr = vim.json.decode(result.stdout)
+        vim.cmd.edit(string.format('gh://%s/pr/%s', pr.headRepository.nameWithOwner, pr.number))
+    end
+
     require('gitsigns').change_base(base_merge_base, true)
     git.configure_gitsigns({ show_deleted = true })
 
