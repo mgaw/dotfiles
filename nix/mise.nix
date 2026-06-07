@@ -34,7 +34,6 @@ in
 
   config.programs.mise = {
     enable = true;
-    enableZshIntegration = false;
     package = pkgs.writeShellScriptBin "mise" ''exec ${miseBin} "$@"'';
     globalConfig = {
       tools = config.mise.tools;
@@ -48,7 +47,6 @@ in
   };
 
   config.programs.zsh.initContent = /* zsh */ ''
-    eval "$(${miseBin} activate zsh)"
     eval "$(${miseBin} completions zsh)"
   '';
 
