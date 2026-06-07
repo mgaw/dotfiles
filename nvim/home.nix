@@ -1,18 +1,13 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
-  programs.neovim = {
-    enable = true;
-
-    withPython3 = true; # remote plugins (e.g. molten-nvim)
-    extraPython3Packages =
-      ps: with ps; [
-        jupyter-client # molten-nvim
-      ];
-
-    extraPackages = [
-      pkgs.tree-sitter # treesitter.lua
-    ];
+  mise.tools = {
+    "pipx:pynvim" = {
+      version = "latest";
+      uvx_args = "--with jupyter-client"; # molten-nvim
+    };
+    neovim = "latest";
+    tree-sitter = "latest";
   };
 
   xdg.configFile.nvim.source = config.utils.mkDotfilesSymlink "nvim";
