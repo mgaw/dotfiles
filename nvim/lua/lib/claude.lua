@@ -13,7 +13,7 @@ function M.send_selection_to_claude(opts)
     if start_line > end_line then
         start_line, end_line = end_line, start_line
     end
-    local file = vim.api.nvim_buf_get_name(0)
+    local file = vim.fn.resolve(vim.api.nvim_buf_get_name(0))
     local lines = vim.api.nvim_buf_get_lines(0, start_line - 1, end_line, false)
 
     local prompt =
