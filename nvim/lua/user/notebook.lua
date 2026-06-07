@@ -41,7 +41,7 @@ return {
     -- Run `quarto preview file.qmd` to render notebook in browser
     {
         'https://github.com/benlubas/molten-nvim',
-        version = '^1.0.0',
+        version = '*',
         -- Plugin needs to be loaded for UpdateRemotePlugins to work
         build = ':UpdateRemotePlugins',
         ft = 'quarto',
@@ -61,6 +61,7 @@ return {
     -- Render inline images
     {
         'https://github.com/3rd/image.nvim',
+        version = '*',
         ft = 'quarto',
         opts = {
             backend = 'kitty',
@@ -72,6 +73,7 @@ return {
     -- Via otter, make code in cells available to language servers
     {
         'https://github.com/quarto-dev/quarto-nvim',
+        version = '*',
         ft = 'quarto',
         dependencies = {
             'https://github.com/jmbuhr/otter.nvim',

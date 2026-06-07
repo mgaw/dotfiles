@@ -2,6 +2,7 @@ local terminal = require('user.terminal').M
 
 return {
     'https://github.com/vim-test/vim-test',
+    version = '*',
     config = function()
         vim.g['test#custom_strategies'] = {
             scratch = function(cmd)
