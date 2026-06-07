@@ -106,4 +106,39 @@
     npmMinimalAgeGate: '3d'
     enableTelemetry: 0
   '';
+
+  home.file.".prettierrc.yaml".text = /* yaml */ ''
+    tabWidth: 4
+    singleQuote: true
+    printWidth: 120
+    overrides:
+      - files:
+          - '*.md'
+          - '*.yml'
+          - '*.yaml'
+        options:
+          tabWidth: 2
+  '';
+
+  xdg.configFile."ruff/ruff.toml".text = /* toml */ ''
+    line-length = 120
+  '';
+
+  home.file.".taplo.toml".text = /* toml */ ''
+    [formatting]
+    indent_string = "    " # match uv
+    array_auto_collapse = false
+  '';
+
+  editorconfig = {
+    enable = true;
+    settings = {
+      "*" = {
+        indent_style = "space";
+        indent_size = 4;
+      };
+
+      "*.{txt,md,nix,yml,yaml}".indent_size = 2;
+    };
+  };
 }
