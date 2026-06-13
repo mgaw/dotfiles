@@ -14,6 +14,7 @@ in
 {
   options.mise = {
     tools = lib.mkOption {
+      type = lib.types.attrsOf lib.types.anything;
       default = { };
     };
   };
