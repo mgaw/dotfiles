@@ -52,5 +52,6 @@ in
 
   config.programs.git.ignores = [
     "/mise.local.toml"
+    "/mise.local.lock"
   ];
 }
