@@ -18,7 +18,7 @@
   "otter.nvim": { "branch": "main", "commit": "d781eda3bc18dbc8677f9a24abdc705fb74e4428" },
   "plenary.nvim": { "branch": "master", "commit": "74b06c6c75e4eeb3108ec01852001636d85a932b" },
   "quarto-nvim": { "branch": "main", "commit": "17f1e5d664bc615478230dc0240666329efacf9b" },
-  "refactoring.nvim": { "branch": "master", "commit": "624c01e8175901484eac74512baf35e9dfe269b8" },
+  "refactoring.nvim": { "branch": "master", "commit": "7eaa150061ea18fdbe18fbb924d236e3ddccc57d" },
   "satellite.nvim": { "branch": "main", "commit": "87843c9c8f28b54332497302de380a6d94c9e82b" },
   "sidebar.nvim": { "branch": "main", "commit": "082e4903c1659a65e27a075b752178b0c56fffb2" },
   "snacks.nvim": { "branch": "main", "commit": "e6fd58c82f2f3fcddd3fe81703d47d6d48fc7b9f" },
