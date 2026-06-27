@@ -69,7 +69,7 @@
     "npm:vscode-langservers-extracted" = "latest";
     "pipx:llm" = "latest";
     ast-grep = "latest";
-    biome = "latest";
+    "npm:@biomejs/biome" = "latest";
     fd = "latest";
     hyperfine = "latest";
     jq = "latest";
