@@ -5,7 +5,7 @@
 # https://nix.dev/manual/nix/latest/
 # nix hash convert --to nix32 sha256-...
 
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
@@ -90,6 +90,10 @@
   programs = {
     bash.enable = true;
   };
+
+  home.sessionPath = [
+    "${config.utils.dotfiles}/bin"
+  ];
 
   xdg.configFile."uv/uv.toml".text = /* toml */ ''
     # https://docs.astral.sh/uv/reference/settings/#exclude-newer

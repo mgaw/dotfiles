@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# Open a new tab in Ghostty's front window and run the given command in it.
+# Optionally run a second command in a split pane within the same tab.
+# Usage: ghostty-tab <command> [second-command]
+set -euo pipefail
+
+# Escape a string for embedding in an AppleScript string literal.
+escape() {
+    local s=$1
+    s=${s//\\/\\\\} # backslashes first
+    s=${s//\"/\\\"} # then double quotes
+    printf '%s' "$s"
+}
+
+cmd1=$(escape "${1:?usage: ghostty-tab <command> [second-command]}")
+
+script='tell application "Ghostty"
+    set cfg1 to new surface configuration
+    set initial input of cfg1 to "'"$cmd1"'" & linefeed
+    set t to new tab in front window with configuration cfg1'
+
+if [[ $# -ge 2 ]]; then
+    cmd2=$(escape "$2")
+    script+='
+    set term to focused terminal of t
+    set cfg2 to new surface configuration
+    set initial input of cfg2 to "'"$cmd2"'" & linefeed
+    split term direction right with configuration cfg2'
+fi
+
+script+='
+end tell'
+
+osascript -e "$script"
