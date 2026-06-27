@@ -26,9 +26,12 @@ in
     HOMEBREW_NO_INSTALL_CLEANUP = "yes";
     HOMEBREW_NO_ANALYTICS = 1;
     HOMEBREW_NO_AUTO_UPDATE = 1;
+    HOMEBREW_NO_UPGRADE_AUTO_UPDATES_CASKS = 1;
   };
 
   config.home.activation.homebrew = lib.hm.dag.entryAfter [ "writeBoundary" ] /* sh */ ''
+    export HOMEBREW_NO_UPGRADE_AUTO_UPDATES_CASKS=1
+
     if ! /usr/bin/xcode-select --version >/dev/null 2>&1; then
       echo "Will install command line tools..."
       run /usr/bin/xcode-select --install
@@ -40,6 +43,6 @@ in
       run /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
 
-    run /opt/homebrew/bin/brew bundle --file ${brewfileFile} --cleanup --force-cleanup --verbose
+    run /opt/homebrew/bin/brew bundle cleanup --file ${brewfileFile} --install --force --verbose
   '';
 }
