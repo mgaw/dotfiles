@@ -152,7 +152,8 @@ alias grba='git rebase --abort'
 
 # cherry-pick
 alias gcp='git cherry-pick'
-alias gcpnc='git cherry-pick --no-commit'
+alias gcpn='git cherry-pick --no-commit'
+alias gcpe='git cherry-pick --edit'
 alias gcpc='git cherry-pick --continue'
 alias gcpa='git cherry-pick --abort'
 
