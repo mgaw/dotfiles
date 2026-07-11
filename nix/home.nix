@@ -9,11 +9,11 @@
 
 {
   imports = [
-    ../claude/home.nix
     ../ghostty/home.nix
     ../karabiner/home.nix
     ../nvim/home.nix
     ../zsh/home.nix
+    ./claude.nix
     ./darwin.nix
     ./direnv.nix
     ./fzf.nix
