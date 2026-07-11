@@ -24,16 +24,13 @@
     };
     autosuggestion.enable = true;
     enableCompletion = true;
+    fastSyntaxHighlighting.enable = true;
 
     plugins = [
       {
         name = "zsh-autopair";
         src = "${pkgs.zsh-autopair}/share/zsh/zsh-autopair";
         file = "autopair.zsh";
-      }
-      {
-        name = "fast-syntax-highlighting";
-        src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting";
       }
     ];
 
