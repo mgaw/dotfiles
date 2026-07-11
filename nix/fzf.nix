@@ -8,6 +8,6 @@
       "--height 40%"
       "--reverse"
     ];
-    fileWidgetCommand = "${pkgs.fd}/bin/fd --hidden --exclude .git"; # apply .gitignore
+    fileWidget.command = "${pkgs.fd}/bin/fd --hidden --exclude .git"; # apply .gitignore
   };
 }
