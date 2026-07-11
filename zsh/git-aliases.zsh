@@ -194,3 +194,5 @@ gmob() {
 ghpr() {
     gh pr create -B "$(git get-base)" -fw "$@"
 }
+alias ggb='git get-base'
+alias gsb='git set-base'
