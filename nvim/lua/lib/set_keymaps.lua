@@ -52,8 +52,8 @@ local function set_keymaps(mappings)
         if is_implicit_normal_mode(rhs) then
             set_keymap('n', lhs, rhs)
         else
-            for mode, actual_rhs in pairs(rhs) do
-                set_keymap(unpack_modes(mode), lhs, actual_rhs)
+            for mode, mode_rhs in pairs(rhs) do
+                set_keymap(unpack_modes(mode), lhs, mode_rhs)
             end
         end
     end
