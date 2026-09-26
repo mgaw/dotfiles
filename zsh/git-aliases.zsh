@@ -142,7 +142,9 @@ gacf() {
 
 # merge
 alias gm='git merge'
-alias gmom='git merge origin/master'
+gmom() { # git merge origin/main
+    git merge "$(git symbolic-ref --short refs/remotes/origin/HEAD)"
+}
 alias gmu='git merge @{upstream}'
 
 # rebase
