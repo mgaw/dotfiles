@@ -69,6 +69,7 @@
     "pypi:llm" = "latest";
     ast-grep = "latest";
     "npm:@biomejs/biome" = "latest";
+    codex = "latest";
     fd = "latest";
     hyperfine = "latest";
     jq = "latest";

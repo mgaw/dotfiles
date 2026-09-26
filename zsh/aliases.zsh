@@ -112,6 +112,7 @@ kns() {
 }
 
 alias cc=claude
+alias cx=codex
 
 alias ag="rg --smart-case --sort-files --hidden --glob '!.git/*'"
 
