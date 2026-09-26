@@ -66,7 +66,7 @@
     "npm:bash-language-server" = "latest";
     "npm:prettier" = "latest";
     "npm:vscode-langservers-extracted" = "latest";
-    "pipx:llm" = "latest";
+    "pypi:llm" = "latest";
     ast-grep = "latest";
     "npm:@biomejs/biome" = "latest";
     fd = "latest";

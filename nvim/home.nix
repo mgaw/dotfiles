@@ -2,7 +2,7 @@
 
 {
   mise.tools = {
-    "pipx:pynvim" = {
+    "pypi:pynvim" = {
       version = "latest";
       uvx_args = "--with jupyter-client"; # molten-nvim
     };
