@@ -101,15 +101,11 @@
         persistent-apps = [ ];
         persistent-others =
           map
-            (dir: {
-              tile-data = {
-                arrangement = 4; # Date Created
-                file-data = {
-                  _CFURLString = "file://${dir}";
-                  _CFURLStringType = 15;
-                };
+            (path: {
+              folder = {
+                inherit path;
+                arrangement = "date-created";
               };
-              tile-type = "directory-tile";
             })
             [
               "${config.home.homeDirectory}/Downloads/"
