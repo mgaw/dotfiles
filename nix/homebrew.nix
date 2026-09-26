@@ -34,11 +34,6 @@ in
   config.home.activation.homebrew = lib.hm.dag.entryAfter [ "writeBoundary" ] /* sh */ ''
     ${lib.concatMapStringsSep "\n" (name: "export ${name}=1") homebrewEnvVars}
 
-    if ! /usr/bin/xcode-select --version >/dev/null 2>&1; then
-      echo "Will install command line tools..."
-      run /usr/bin/xcode-select --install
-    fi
-
     if ! /opt/homebrew/bin/brew --version >/dev/null 2>&1; then
       echo "Will install brew..."
       # https://brew.sh/
