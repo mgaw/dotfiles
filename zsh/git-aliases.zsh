@@ -6,6 +6,7 @@ vin() { gn -c nvim "$@"; }
 
 # show
 alias gw='git show'
+alias gwm='gw --remerge-diff'
 alias gwu='gw @{upstream}'
 alias gws='gw --stat'
 gwc() { echo -n "$(git rev-parse HEAD)" | pbcopy; }
