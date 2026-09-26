@@ -200,4 +200,10 @@ ghpr() {
     gh pr create -B "$(git get-base)" -fw "$@"
 }
 alias ggb='git get-base'
-alias gsb='git set-base'
+gsb() {
+    if [[ -n "$*" ]]; then
+        git set-base "$@"
+    else
+        git for-each-ref --sort=-committerdate --format='%(refname:short)' refs/heads | fzf | xargs git set-base
+    fi
+}
