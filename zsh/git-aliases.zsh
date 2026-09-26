@@ -161,15 +161,16 @@ alias gcpc='git cherry-pick --continue'
 alias gcpa='git cherry-pick --abort'
 
 # log
-gl() {
+_gl() {
     local commit_hash='%C(yellow)%h'
     local date='%C(green)%cr'
     local ref='%C(auto)%d'
     local author='%C(white)%<(18,trunc)%an%Creset' # reset bold
     local message='%Creset%s'
-    git log --color --pretty="$author $commit_hash$ref $message" --abbrev-commit --first-parent "$@"
+    git log --color --pretty="$author $commit_hash$ref $message" --abbrev-commit "$@"
 }
-glg() { gl --graph "$@"; }
+gl() { _gl --first-parent; }
+glg() { _gl --graph "$@"; }
 alias gla='gl --all'
 alias glga='glg --all'
 
