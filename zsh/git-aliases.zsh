@@ -190,6 +190,9 @@ grbib() {
 grbiob() {
     git rebase --interactive origin/"$(git get-base)"
 }
+gfob() {
+    GIT_SEQUENCE_EDITOR="sed -i '' '2,\$s/^pick/fixup/'" grbiob
+}
 gmb() {
     git merge "$(git get-base)"
 }
