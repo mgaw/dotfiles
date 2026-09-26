@@ -9,6 +9,13 @@
 let
   brewfile = lib.concatMapStringsSep "\n" (cask: ''cask "${cask}"'') config.homebrew.casks;
   brewfileFile = pkgs.writeText "Brewfile" brewfile;
+
+  homebrewEnvVars = [
+    "HOMEBREW_NO_ANALYTICS"
+    "HOMEBREW_NO_AUTO_UPDATE"
+    "HOMEBREW_NO_INSTALL_CLEANUP"
+    "HOMEBREW_NO_UPGRADE_AUTO_UPDATES_CASKS"
+  ];
 in
 
 {
@@ -22,15 +29,10 @@ in
     "/opt/homebrew/bin"
   ];
 
-  config.home.sessionVariables = {
-    HOMEBREW_NO_INSTALL_CLEANUP = "yes";
-    HOMEBREW_NO_ANALYTICS = 1;
-    HOMEBREW_NO_AUTO_UPDATE = 1;
-    HOMEBREW_NO_UPGRADE_AUTO_UPDATES_CASKS = 1;
-  };
+  config.home.sessionVariables = lib.genAttrs homebrewEnvVars (_: 1);
 
   config.home.activation.homebrew = lib.hm.dag.entryAfter [ "writeBoundary" ] /* sh */ ''
-    export HOMEBREW_NO_UPGRADE_AUTO_UPDATES_CASKS=1
+    ${lib.concatMapStringsSep "\n" (name: "export ${name}=1") homebrewEnvVars}
 
     if ! /usr/bin/xcode-select --version >/dev/null 2>&1; then
       echo "Will install command line tools..."
