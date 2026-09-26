@@ -35,7 +35,9 @@ in
 
   config.programs.mise = {
     enable = true;
-    package = pkgs.writeShellScriptBin "mise" ''exec ${miseBin} "$@"'';
+    package = pkgs.writeShellScriptBin "mise" ''
+      exec -a "$0" ${miseBin} "$@"
+    '';
     enableBashIntegration = false;
     globalConfig = {
       tools = config.mise.tools;
