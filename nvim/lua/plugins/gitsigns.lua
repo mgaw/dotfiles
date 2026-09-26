@@ -7,6 +7,8 @@ local M = {}
 -- with linehl.)
 -- DeleteInline also works in virtual text.
 function M.configure(opts)
+    M.show_deleted = opts.show_deleted
+
     vim.api.nvim_set_hl(0, 'GitSignsAdd', { fg = 'green' })
     vim.api.nvim_set_hl(0, 'GitSignsAddLn', { bg = '#0b1506' })
     vim.api.nvim_set_hl(0, 'GitSignsAddInline', { bg = '#004000' })
@@ -28,6 +30,10 @@ function M.configure(opts)
     else
         vim.api.nvim_set_hl(0, 'GitSignsChange', { fg = 'yellow' })
     end
+end
+
+function M.toggle_show_deleted()
+    M.configure({ show_deleted = not M.show_deleted })
 end
 
 return {

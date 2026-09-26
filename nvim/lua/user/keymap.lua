@@ -1,5 +1,6 @@
 local alt = require('lib.alt')
 local claude = require('lib.claude')
+local gitsigns = require('plugins.gitsigns').M
 local helpers = require('lib.keymap-helpers')
 local notebook = require('user.notebook').M
 local open_file = require('lib.open_file')
@@ -88,7 +89,9 @@ require('lib.set_keymaps')({
     [alt.p] = terminal.term('git add --patch && git commit --verbose'),
     [alt.a] = '<Cmd>Git add %<CR>',
 
-    -- [alt.d]
+    [alt.d] = function()
+        gitsigns.toggle_show_deleted()
+    end,
     [alt.shift.d] = function()
         require('gitsigns.actions').preview_hunk_inline()
     end,

@@ -26,6 +26,11 @@ vim.api.nvim_create_user_command('Approve', function()
     vim.cmd.quit()
 end, {})
 
+
+vim.api.nvim_create_user_command('ToggleShowDeleted', function()
+    gitsigns.toggle_show_deleted()
+end, {})
+
 vim.api.nvim_create_user_command('Review', function()
     local base_merge_base = base.get_base_merge_base()
     if not base_merge_base then
