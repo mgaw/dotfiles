@@ -55,7 +55,6 @@
   homebrew.casks = [
     "alfred"
     "firefox"
-    "logi-options+"
     "netnewswire"
     "rectangle"
     "spotify"
