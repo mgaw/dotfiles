@@ -8,6 +8,8 @@ return {
             end,
         })
 
+        vim.lsp.document_color.enable(true, nil, { style = 'virtual' })
+
         -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
         vim.lsp.enable({
             'ast_grep',
