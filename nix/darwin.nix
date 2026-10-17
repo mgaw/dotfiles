@@ -161,6 +161,7 @@
         subsequentExecutionMode = 0; # Repeated commands: cycle sizes on half actions
         selectedCycleSizes = 18; # Cycle 1/2 and 3/4
         windowSnapping = 2; # Disable "Snap windows by dragging"
+        SUAutomaticallyUpdate = 1;
         SUEnableAutomaticChecks = 1;
         firstThreeFourths = {
           modifierFlags = 1310720; # Cmd+Ctrl
