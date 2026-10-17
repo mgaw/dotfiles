@@ -2,6 +2,9 @@ local colors = require('user.colors')
 
 local M = {}
 
+local MIN_WIDTH = 10
+local MAX_WIDTH = 35
+
 local function get_available_width()
     local gutter_width = 6 -- numbers, signcolumn
     local textwidth = 121
@@ -12,13 +15,11 @@ local function get_available_width()
 end
 
 function M.should_auto_open()
-    return get_available_width() >= 20
+    return get_available_width() >= MIN_WIDTH
 end
 
 function M.get_initial_width()
-    local min_width = 20
-    local max_width = 35
-    return math.min(math.max(get_available_width(), min_width), max_width)
+    return math.min(math.max(get_available_width(), MIN_WIDTH), MAX_WIDTH)
 end
 
 function M.update_state()
