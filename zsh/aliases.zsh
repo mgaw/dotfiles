@@ -41,8 +41,8 @@ vic() { # VIm Conflicts
     git diff --name-only -z --diff-filter=U | xargs -0 nvim
 }
 
-vir() { # VIm Review
-    nvim -c Review
+vir() { # VIm Review [base commit]
+    nvim -c "Review ${1:-}"
 }
 
 alias vi=nvim

@@ -31,10 +31,22 @@ vim.api.nvim_create_user_command('ToggleShowDeleted', function()
     gitsigns.toggle_show_deleted()
 end, {})
 
-vim.api.nvim_create_user_command('Review', function()
-    local base_merge_base = base.get_base_merge_base()
-    if not base_merge_base then
-        return
+-- :Review [base]
+-- Review all changes since the given base commit. Without an argument the
+-- merge base with the PR's base branch is used.
+vim.api.nvim_create_user_command('Review', function(opts)
+    local base_merge_base = opts.fargs[1]
+    if base_merge_base then
+        vim.fn.system({ 'git', 'rev-parse', '--verify', '--quiet', base_merge_base .. '^{commit}' })
+        if vim.v.shell_error ~= 0 then
+            vim.notify('Not a commit: ' .. base_merge_base, vim.log.levels.ERROR)
+            return
+        end
+    else
+        base_merge_base = base.get_base_merge_base()
+        if not base_merge_base then
+            return
+        end
     end
 
     require('gitsigns').change_base(base_merge_base, true)
@@ -65,4 +77,4 @@ vim.api.nvim_create_user_command('Review', function()
     vim.keymap.set('n', alt.shift.p, function()
         nav_hunk.nav_hunk('prev', { center = true, cross_buffer = true })
     end)
-end, {})
+end, { nargs = '?' })
