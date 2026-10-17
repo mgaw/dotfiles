@@ -31,6 +31,12 @@ in
 
   config.home.sessionVariables = lib.genAttrs homebrewEnvVars (_: 1);
 
+  # Completions shipped by casks (_brew, _docker, _ghostty, ...). Must be on fpath
+  # before compinit, which home-manager emits at order 570.
+  config.programs.zsh.initContent = lib.mkOrder 550 /* zsh */ ''
+    fpath+=(/opt/homebrew/share/zsh/site-functions)
+  '';
+
   config.home.activation.homebrew = lib.hm.dag.entryAfter [ "writeBoundary" ] /* sh */ ''
     ${lib.concatMapStringsSep "\n" (name: "export ${name}=1") homebrewEnvVars}
 
