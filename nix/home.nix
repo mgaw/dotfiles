@@ -68,7 +68,7 @@
     "npm:vscode-langservers-extracted" = "latest";
     "pypi:llm" = "latest";
     ast-grep = "latest";
-    "npm:@biomejs/biome" = "latest";
+    biome = "latest";
     codex = "latest";
     fd = "latest";
     hyperfine = "latest";
