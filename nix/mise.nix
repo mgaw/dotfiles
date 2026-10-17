@@ -46,6 +46,7 @@ in
         experimental = true;
         # https://mise.jdx.dev/configuration/settings.html#minimum_release_age
         minimum_release_age = "3d";
+        python.compile = false;
       };
     };
   };
