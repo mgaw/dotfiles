@@ -20,8 +20,8 @@ return {
             'ruff',
             'stylua',
             'taplo',
+            'tsc',
             'ty',
-            'vtsls',
         })
     end,
 }

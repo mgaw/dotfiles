@@ -62,7 +62,6 @@
   ];
 
   mise.tools = {
-    "npm:@vtsls/language-server" = "latest";
     "npm:bash-language-server" = "latest";
     "npm:prettier" = "latest";
     "npm:vscode-langservers-extracted" = "latest";
