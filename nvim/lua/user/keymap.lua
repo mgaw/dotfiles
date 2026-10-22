@@ -1,5 +1,5 @@
 local alt = require('lib.alt')
-local claude = require('lib.claude')
+local agent = require('lib.agent')
 local gitsigns = require('plugins.gitsigns').M
 local helpers = require('lib.keymap-helpers')
 local notebook = require('user.notebook').M
@@ -180,12 +180,12 @@ require('lib.set_keymaps')({
 
     [alt.c] = {
         x = function()
-            claude.send_selection_to_claude()
+            agent.send_selection_to_agent()
         end,
     },
     [alt.shift.c] = {
         x = function()
-            claude.send_selection_to_claude({ plan_mode = true })
+            agent.send_selection_to_agent({ plan_mode = true })
         end,
     },
 
