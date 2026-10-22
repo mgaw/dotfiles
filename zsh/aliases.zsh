@@ -5,11 +5,11 @@ dff() { (df && nvim -c OpenFile); }
 dfu() {
     mise self-update --yes
     brew update
-    nix flake update --flake ~/src/dotfiles --commit-lock-file
+    nix flake update --flake ~/src/dotfiles
     home-manager switch --flake ~/src/dotfiles --impure
     nvim -c "lua require('lazy').sync({ wait = true })"
-    git -C ~/src/dotfiles commit -m 'nvim/lazy-lock.json: Update' -- nvim/lazy-lock.json
-    mise up
+    mise upgrade --global
+    git -C ~/src/dotfiles commit -m 'Bump versions' -- flake.lock nvim/lazy-lock.json mise/mise.lock
     brew upgrade
     softwareupdate --install --list
 }

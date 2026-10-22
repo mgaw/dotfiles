@@ -31,6 +31,7 @@
   ];
 
   home.packages = with pkgs; [
+    bash-language-server
     chafa # cat images
     coreutils
     curl
@@ -47,9 +48,11 @@
     openssh
     pandoc
     perlPackages.AppSt # quick stats
+    prettier
     qrencode
     sqlite
     tree
+    vscode-langservers-extracted
     yubikey-manager
   ];
 
@@ -63,10 +66,6 @@
   ];
 
   mise.tools = {
-    "npm:bash-language-server" = "latest";
-    "npm:prettier" = "latest";
-    "npm:vscode-langservers-extracted" = "latest";
-    "pypi:llm" = "latest";
     ast-grep = "latest";
     biome = "latest";
     codex = "latest";

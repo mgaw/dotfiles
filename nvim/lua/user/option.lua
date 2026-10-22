@@ -94,3 +94,6 @@ vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 
 vim.g.modeline = false
+
+-- Python env with pynvim provided by nvim/home.nix
+vim.g.python3_host_prog = vim.env.NVIM_PYTHON3_HOST_PROG
