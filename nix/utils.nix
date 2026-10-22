@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   options.utils = lib.mkOption {
@@ -11,5 +16,9 @@
     # https://github.com/nix-community/home-manager/issues/2085
     dotfiles = "${config.home.homeDirectory}/src/dotfiles";
     mkDotfilesSymlink = relativePath: config.lib.file.mkOutOfStoreSymlink "${dotfiles}/${relativePath}";
+
+    toml = pkgs.formats.toml { };
+    yaml = pkgs.formats.yaml { };
+    keyValue = pkgs.formats.keyValue { };
   };
 }

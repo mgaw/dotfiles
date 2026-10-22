@@ -10,7 +10,6 @@
 let
   miseBinPath = "${config.home.homeDirectory}/.local/bin";
   miseBin = "${miseBinPath}/mise";
-  tomlFormat = pkgs.formats.toml { };
 in
 {
   options.mise = {
@@ -56,7 +55,7 @@ in
   };
 
   config.xdg.configFile = {
-    "mise/config.local.toml".source = tomlFormat.generate "mise-config-local" {
+    "mise/config.local.toml".source = config.utils.toml.generate "mise-config-local" {
       tools = config.mise.localTools;
     };
     "mise/mise.lock".source = config.utils.mkDotfilesSymlink "mise/mise.lock";

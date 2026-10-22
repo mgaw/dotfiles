@@ -1,13 +1,19 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   mise.tools.direnv = "latest";
 
-  xdg.configFile."direnv/direnv.toml".text = /* toml */ ''
-    [global]
-    warn_timeout = "0s"
-    hide_env_diff = true
-  '';
+  xdg.configFile."direnv/direnv.toml".source = config.utils.toml.generate "direnv.toml" {
+    global = {
+      warn_timeout = "0s";
+      hide_env_diff = true;
+    };
+  };
 
   xdg.configFile."direnv/direnvrc".text = /* sh */ ''
     source ${pkgs.nix-direnv}/share/nix-direnv/direnvrc

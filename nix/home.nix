@@ -97,44 +97,48 @@
     "${config.utils.dotfiles}/bin"
   ];
 
-  xdg.configFile."uv/uv.toml".text = /* toml */ ''
+  xdg.configFile."uv/uv.toml".source = config.utils.toml.generate "uv.toml" {
     # https://docs.astral.sh/uv/reference/settings/#exclude-newer
-    exclude-newer = "3 days"
-  '';
+    exclude-newer = "3 days";
+  };
 
-  home.file.".npmrc".text = /* dosini */ ''
+  home.file.".npmrc".source = config.utils.keyValue.generate "npmrc" {
     # https://docs.npmjs.com/cli/v11/commands/npm-install#min-release-age
-    min-release-age=3
-  '';
+    min-release-age = 3;
+  };
 
-  home.file.".yarnrc.yml".text = /* yaml */ ''
+  home.file.".yarnrc.yml".source = config.utils.yaml.generate "yarnrc.yml" {
     # https://yarnpkg.com/configuration/yarnrc#npmMinimalAgeGate
-    npmMinimalAgeGate: '3d'
-    enableTelemetry: 0
-  '';
+    npmMinimalAgeGate = "3d";
+    enableTelemetry = 0;
+  };
 
-  home.file.".prettierrc.yaml".text = /* yaml */ ''
-    tabWidth: 4
-    singleQuote: true
-    printWidth: 120
-    overrides:
-      - files:
-          - '*.md'
-          - '*.yml'
-          - '*.yaml'
-        options:
-          tabWidth: 2
-  '';
+  home.file.".prettierrc.yaml".source = config.utils.yaml.generate "prettierrc.yaml" {
+    tabWidth = 4;
+    singleQuote = true;
+    printWidth = 120;
+    overrides = [
+      {
+        files = [
+          "*.md"
+          "*.yml"
+          "*.yaml"
+        ];
+        options.tabWidth = 2;
+      }
+    ];
+  };
 
-  xdg.configFile."ruff/ruff.toml".text = /* toml */ ''
-    line-length = 120
-  '';
+  xdg.configFile."ruff/ruff.toml".source = config.utils.toml.generate "ruff.toml" {
+    line-length = 120;
+  };
 
-  home.file.".taplo.toml".text = /* toml */ ''
-    [formatting]
-    indent_string = "    "      # match uv
-    array_auto_collapse = false
-  '';
+  home.file.".taplo.toml".source = config.utils.toml.generate "taplo.toml" {
+    formatting = {
+      indent_string = "    "; # match uv
+      array_auto_collapse = false;
+    };
+  };
 
   editorconfig = {
     enable = true;
