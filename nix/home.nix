@@ -15,6 +15,7 @@
     ../nvim/home.nix
     ../zsh/home.nix
     ./claude.nix
+    ./codex.nix
     ./darwin.nix
     ./direnv.nix
     ./fzf.nix
@@ -69,7 +70,6 @@
   mise.tools = {
     ast-grep = "latest";
     biome = "latest";
-    codex = "latest";
     fd = "latest";
     hyperfine = "latest";
     jq = "latest";

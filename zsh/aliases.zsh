@@ -113,9 +113,6 @@ kns() {
     kubectl config set-context --current --namespace="$namespace"
 }
 
-alias cc=claude
-alias cx=codex
-
 alias ag="rg --smart-case --sort-files --hidden --glob '!.git/*'"
 
 # search and replace

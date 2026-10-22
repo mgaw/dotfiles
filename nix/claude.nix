@@ -5,9 +5,9 @@
   home.file.".local/bin/claude".source =
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.local/share/mise/shims/claude";
 
-  mise.tools = {
-    claude = "latest";
-  };
+  mise.tools.claude = "latest";
+
+  programs.zsh.shellAliases.cc = "claude";
 
   programs.git.ignores = [
     "/.claude/settings.local.json"
