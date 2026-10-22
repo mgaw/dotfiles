@@ -11,7 +11,9 @@ dfu() {
     mise upgrade --global
     git -C ~/src/dotfiles commit -m 'Bump versions' -- flake.lock nvim/lazy-lock.json mise/mise.lock
     brew upgrade
-    softwareupdate --install --list
+    if softwareupdate --list 2>&1 | grep -q "Label:"; then
+        open "x-apple.systempreferences:com.apple.Software-Update-Settings.extension"
+    fi
 }
 
 dfa() {
