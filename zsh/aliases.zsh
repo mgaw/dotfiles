@@ -93,12 +93,6 @@ t() {
 
 alias diff='git diff --no-index'
 
-alias pw='gopass show --noparsing'
-alias pc='gopass show -c'
-alias pe='gopass edit --create'
-alias pg='gopass generate --symbols'
-alias pgns='gopass generate' # "no symbols"
-
 alias kg='kubectl get'
 alias kgp='kubectl get pods'
 alias kgpf='kubectl get pod --no-headers -o custom-columns=":metadata.name" | fzf'

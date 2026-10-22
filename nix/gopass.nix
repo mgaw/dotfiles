@@ -5,6 +5,14 @@
     gopass
   ];
 
+  programs.zsh.shellAliases = {
+    pw = "gopass show --noparsing";
+    pc = "gopass show -c";
+    pe = "gopass edit --create";
+    pg = "gopass generate --symbols";
+    pgns = "gopass generate"; # "no symbols"
+  };
+
   # These files would usually be created by `gopass-jsonapi configure --browser {firefox,chrome}`
   home.file =
     let
