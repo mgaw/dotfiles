@@ -5,8 +5,6 @@
   ...
 }:
 
-# Using home manager to manage global mise config but otherwise use directly installed mise
-# to have access to the latest version.
 let
   miseBinPath = "${config.home.homeDirectory}/.local/bin";
   miseBin = "${miseBinPath}/mise";
@@ -35,26 +33,18 @@ in
     PATH="${pkgs.nodejs}/bin:${miseBinPath}:$PATH" run mise install
   '';
 
-  config.programs.mise = {
-    enable = true;
-    package = pkgs.writeShellScriptBin "mise" ''
-      exec -a "$0" ${miseBin} "$@"
-    '';
-    enableBashIntegration = false;
-    globalConfig = {
+  config.xdg.configFile = {
+    "mise/config.toml".source = config.utils.toml.generate "mise-config" {
       tools = config.mise.tools;
+      # https://mise.jdx.dev/configuration/settings.html
       settings = {
         idiomatic_version_file_enable_tools = [ ];
         experimental = true;
         lockfile_platforms = [ "macos-arm64" ];
-        # https://mise.jdx.dev/configuration/settings.html#minimum_release_age
         minimum_release_age = "3d";
         python.compile = false;
       };
     };
-  };
-
-  config.xdg.configFile = {
     "mise/config.local.toml".source = config.utils.toml.generate "mise-config-local" {
       tools = config.mise.localTools;
     };
@@ -62,6 +52,7 @@ in
   };
 
   config.programs.zsh.initContent = /* zsh */ ''
+    eval "$(${miseBin} activate zsh)"
     eval "$(${miseBin} completions zsh)"
   '';
 
