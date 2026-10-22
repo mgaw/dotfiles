@@ -25,6 +25,7 @@
     ./homebrew.nix
     ./kube-ps1.nix
     ./mise.nix
+    ./usage.nix
     ./utils.nix
     ~/src/dotfiles/nix/home.local.nix
   ];

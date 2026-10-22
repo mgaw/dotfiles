@@ -29,10 +29,6 @@ in
     PATH="${pkgs.nodejs}/bin:${miseBinPath}:$PATH" run mise install
   '';
 
-  config.mise.tools = {
-    usage = "latest"; # required by mise completions
-  };
-
   config.programs.mise = {
     enable = true;
     package = pkgs.writeShellScriptBin "mise" ''

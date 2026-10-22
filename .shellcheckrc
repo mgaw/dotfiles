@@ -1,0 +1,5 @@
+# `#!/usr/bin/env -S usage bash` is not a shebang shellcheck recognizes (SC1008).
+shell=bash
+
+# usage_* variables are set by the usage arg parser.
+disable=SC2154

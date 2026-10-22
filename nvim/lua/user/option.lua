@@ -76,6 +76,9 @@ vim.o.ttimeoutlen = 0
 vim.o.exrc = true
 
 vim.filetype.add({
+    extension = {
+        usage = 'bash',
+    },
     filename = {
         ['.eslintrc.json'] = 'jsonc',
         ['tsconfig.json'] = 'jsonc',

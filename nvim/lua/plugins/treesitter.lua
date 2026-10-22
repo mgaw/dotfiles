@@ -14,6 +14,7 @@ return {
             'comment',
             'promql',
             'diff',
+            'kdl',
         })
 
         local disable_treesitter = {

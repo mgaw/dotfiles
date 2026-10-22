@@ -1,4 +1,3 @@
-# shellcheck shell=bash
 run_if_changed() {
     local watched="$1"
     shift

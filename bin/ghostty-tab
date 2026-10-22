@@ -1,8 +1,27 @@
-#!/usr/bin/env bash
-# Open a new tab in Ghostty's front window and run the given command in it.
-# Optionally run a second command in a split pane within the same tab.
-# Usage: ghostty-tab <command> [second-command]
+#!/usr/bin/env -S usage bash
+#USAGE about "Open a new tab in Ghostty's front window and run the given command in it."
+#USAGE flag "-b --background" help="Keep the currently selected tab focused"
+#USAGE flag "-c --confirm" help="Ask for confirmation before opening the tab"
+#USAGE arg "<command>" help="Command to run in the new tab"
+#USAGE arg "[second-command]" help="Command to run in a split pane next to it"
+
 set -euo pipefail
+
+background=${usage_background:-false}
+confirm=${usage_confirm:-false}
+command1=$usage_command
+command2=${usage_second_command:-}
+
+if $confirm; then
+    prompt=$command1
+    if [[ -n $command2 ]]; then
+        prompt+=" --- $command2"
+    fi
+    read -rp "$prompt [Yn] " reply
+    if [[ $reply == "n" ]]; then
+        exit 0
+    fi
+fi
 
 # Escape a string for embedding in an AppleScript string literal.
 escape() {
@@ -12,20 +31,35 @@ escape() {
     printf '%s' "$s"
 }
 
-cmd1=$(escape "${1:?usage: ghostty-tab <command> [second-command]}")
+cmd1=$(escape "$command1")
 
 script='tell application "Ghostty"
+    set w to front window
+    set prevTab to selected tab of w
     set cfg1 to new surface configuration
     set initial input of cfg1 to "'"$cmd1"'" & linefeed
-    set t to new tab in front window with configuration cfg1'
+    set t to new tab in w with configuration cfg1'
 
-if [[ $# -ge 2 ]]; then
-    cmd2=$(escape "$2")
+if [[ -n $command2 ]]; then
+    cmd2=$(escape "$command2")
     script+='
     set term to focused terminal of t
     set cfg2 to new surface configuration
     set initial input of cfg2 to "'"$cmd2"'" & linefeed
     split term direction right with configuration cfg2'
+fi
+
+if $background; then
+    # `new tab` returns before Ghostty actually selects the new tab (the
+    # focus change is deferred to the next run-loop tick). Selecting prevTab
+    # too early lets that deferred focus change steal focus back, so wait
+    # until the new tab is selected before switching back.
+    script+='
+    repeat 20 times
+        if selected of t then exit repeat
+        delay 0.02
+    end repeat
+    select tab prevTab'
 fi
 
 script+='
