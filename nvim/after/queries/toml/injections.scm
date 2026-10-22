@@ -73,3 +73,33 @@
       (string) @injection.content
       (#set! injection.language "sh")
       (#offset! @injection.content 0 1 0 -1))))
+
+; Inject kdl highlighting for mise task `usage` specs (https://usage.jdx.dev)
+
+; Dotted table style: [tasks.name] \n usage = """kdl spec""" (or '''kdl spec''')
+(table
+  (dotted_key
+    (bare_key) @_table_name
+    (_)
+    (#eq? @_table_name "tasks"))
+  (pair
+    (bare_key) @_key_name
+    (#eq? @_key_name "usage")
+    (string) @injection.content
+    (#match? @injection.content "^\\v(\"\"\"|''')")
+    (#set! injection.language "kdl")
+    (#offset! @injection.content 0 3 0 -3)))
+
+; Dotted table style: [tasks.name] \n usage = "kdl spec" (or 'kdl spec')
+(table
+  (dotted_key
+    (bare_key) @_table_name
+    (_)
+    (#eq? @_table_name "tasks"))
+  (pair
+    (bare_key) @_key_name
+    (#eq? @_key_name "usage")
+    (string) @injection.content
+    (#not-match? @injection.content "^\\v(\"\"\"|''')")
+    (#set! injection.language "kdl")
+    (#offset! @injection.content 0 1 0 -1)))
