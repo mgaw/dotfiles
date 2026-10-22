@@ -1,3 +1,4 @@
+local cmux = require('lib.cmux')
 local ghostty = require('lib.ghostty')
 local utils = require('lib.utils')
 
@@ -41,7 +42,8 @@ function M.send_selection_to_agent(opts)
     end
 
     local cmd = string.format('file=%s; nvim "$file" && %s', vim.fn.shellescape(tmpfile), agent_cmd)
-    ghostty.new_tab(cmd)
+    local terminal = cmux.is_host() and cmux or ghostty
+    terminal.new_tab(cmd)
     utils.feed_keycodes_noremap('<Esc>')
 end
 

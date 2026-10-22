@@ -9,6 +9,7 @@
 
 {
   imports = [
+    ../cmux/home.nix
     ../ghostty/home.nix
     ../karabiner/home.nix
     ../nvim/home.nix

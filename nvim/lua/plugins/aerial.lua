@@ -2,6 +2,9 @@ local sidebar = require('plugins.sidebar').M
 
 local M = {}
 
+local MIN_WIDTH = 20
+local MAX_WIDTH = 45
+
 local function get_available_width()
     local gutter_width = 6 -- numbers, signcolumn
     local textwidth = 121
@@ -23,7 +26,7 @@ local function get_available_width()
 end
 
 local function should_auto_open()
-    return get_available_width() >= 25
+    return get_available_width() >= MIN_WIDTH
 end
 
 -- Ensure get_available_width and should_auto_open are applied
@@ -46,8 +49,8 @@ return {
     opts = {
         layout = {
             width = get_available_width(),
-            max_width = 45, -- more or less take up available space on 3/4 window
-            min_width = 25,
+            max_width = MAX_WIDTH, -- more or less take up available space on 3/4 window
+            min_width = MIN_WIDTH,
             default_direction = 'right',
             placement = 'edge',
         },

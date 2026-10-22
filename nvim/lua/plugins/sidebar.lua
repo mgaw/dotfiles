@@ -3,7 +3,7 @@ local colors = require('user.colors')
 local M = {}
 
 local MIN_WIDTH = 10
-local MAX_WIDTH = 35
+local MAX_WIDTH = 25
 
 local function get_available_width()
     local gutter_width = 6 -- numbers, signcolumn

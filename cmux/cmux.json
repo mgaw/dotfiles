@@ -1,0 +1,44 @@
+{
+    "$schema": "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/data/cmux.schema.json",
+    "schemaVersion": 1,
+
+    "computerUse": {
+        "enabled": false,
+        "showInMenuBar": false
+    },
+
+    "shortcuts": {
+        "showModifierHoldHints": false
+    },
+
+    "app": {
+        "minimalMode": true,
+        "confirmQuit": "dirty-only",
+        "sendAnonymousTelemetry": false,
+        "newWorkspacePlacement": "end",
+        "reorderOnNotification": false
+    },
+
+    "sidebar": {
+        "openPullRequestLinksInCmuxBrowser": false,
+        "openPortLinksInCmuxBrowser": false
+    },
+
+    "workspaceColors": {
+        "selectionColor": "#404040"
+    },
+
+    "sidebarAppearance": {
+        "tintOpacity": 1.0,
+        "lightModeTintColor": null,
+        "darkModeTintColor": null,
+        "matchTerminalBackground": true,
+        "tintColor": "#121212"
+    },
+
+    "browser": {
+        "interceptTerminalOpenCommandInCmuxBrowser": false,
+        "openTerminalLinksInCmuxBrowser": false,
+        "hostsToOpenInEmbeddedBrowser": []
+    }
+}
