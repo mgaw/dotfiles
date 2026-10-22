@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   services.gpg-agent = {
@@ -6,4 +6,7 @@
     enableSshSupport = true;
     pinentry.package = pkgs.pinentry_mac;
   };
+
+  # Avoid errors during home manager switch
+  launchd.agents.gpg-agent.enable = lib.mkForce false;
 }
