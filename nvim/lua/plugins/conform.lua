@@ -3,24 +3,39 @@ return {
     version = '*',
     event = 'VeryLazy',
     opts = {
-        format_on_save = function()
+        default_format_opts = { lsp_format = 'last', timeout_ms = 3000 },
+        format_on_save = function(bufnr)
             -- TODO apply code action fixes on save
             local denylist = vim.fn.split(vim.env.NO_FORMAT_ON_SAVE or '', ',')
-            if not vim.tbl_contains(denylist, vim.o.filetype) then
-                return { lsp_fallback = 'always' }
+            if not vim.tbl_contains(denylist, vim.bo[bufnr].filetype) then
+                return {}
             end
         end,
 
         formatters = {
+            treefmt = {
+                -- Keep temporary files beside the buffer so formatters find local style settings.
+                args = { '$FILENAME' },
+                stdin = false,
+                require_cwd = true,
+                cwd = function(self, ctx)
+                    return require('conform.util').root_file({ 'treefmt.toml', '.treefmt.toml' })(self, ctx)
+                end,
+            },
             injected = {
                 options = {
                     ignore_errors = true,
                     lang_to_formatters = {
-                        python = {
-                            'ruff_organize_imports',
-                            'ruff_format', -- for non-injected, ruff lsp does formatting
-                        },
+                        python = { 'treefmt' },
                         sh = { 'shfmt_injected' },
+                        less = { 'treefmt' },
+                        html = { 'treefmt' },
+                        yaml = { 'treefmt' },
+                        xml = { 'treefmt' },
+                        json = { 'treefmt' },
+                        lua = { 'treefmt' },
+                        nix = { 'treefmt' },
+                        toml = { 'treefmt' },
                     },
                 },
             },
@@ -30,19 +45,13 @@ return {
             },
         },
 
-        -- List available with :h conform-formatters
         formatters_by_ft = {
-            python = { 'ruff_organize_imports', 'injected' },
-            sh = { 'shfmt', 'injected' }, -- shfmt configured in .editorconfig
-            zsh = { 'shfmt' }, -- shfmt configured in .editorconfig
-            less = { 'prettier' },
-            html = { 'prettier' },
-            yaml = { 'prettier' },
-            xml = { 'xmllint' },
-            nix = { 'injected' },
-            markdown = { 'injected' },
-            quarto = { 'injected' },
-            toml = { 'injected' },
+            ['*'] = function(bufnr)
+                if #vim.lsp.get_clients({ bufnr = bufnr, method = 'textDocument/formatting' }) > 0 then
+                    return { 'injected' }
+                end
+                return { 'injected', 'treefmt' }
+            end,
         },
     },
 }

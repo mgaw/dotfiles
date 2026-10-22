@@ -158,7 +158,7 @@ require('lib.set_keymaps')({
 
     [alt.shift.f] = function()
         vim.lsp.buf.code_action({ context = { only = { 'source.fixAll' } }, apply = true })
-        require('conform').format({ lsp_fallback = 'always' })
+        require('conform').format()
     end,
     -- [alt.r]
     -- rename

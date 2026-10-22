@@ -45,7 +45,7 @@
     moreutils # vidir
     nerd-fonts.ubuntu-mono
     nil
-    nixfmt-tree
+    nixfmt
     openssh
     pandoc
     perlPackages.AppSt # quick stats
@@ -76,6 +76,7 @@
     lua-language-server = "latest";
     miller = "latest";
     node = "latest";
+    prek = "latest";
     python = "latest";
     ripgrep = "latest";
     ruff = "latest";
@@ -83,6 +84,7 @@
     shfmt = "latest";
     stylua = "latest";
     taplo = "latest";
+    "aqua:numtide/treefmt" = "latest";
     ty = "latest";
     uv = "latest";
   };
@@ -130,7 +132,7 @@
 
   home.file.".taplo.toml".text = /* toml */ ''
     [formatting]
-    indent_string = "    " # match uv
+    indent_string = "    "      # match uv
     array_auto_collapse = false
   '';
 

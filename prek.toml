@@ -1,0 +1,9 @@
+[[repos]]
+repo = "local"
+
+[[repos.hooks]]
+id = "treefmt"
+name = "treefmt"
+language = "system"
+entry = "env TREEFMT_INJECTED=1 mise exec -- treefmt --no-cache"
+types = ["text"]

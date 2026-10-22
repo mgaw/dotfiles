@@ -2,13 +2,7 @@
 LUA_PATH = "{{config_root}}/nvim/lua/?.lua;;"
 
 [tasks]
-format = [
-    "stylua .",
-    "treefmt",
-    "shfmt -w .",
-    "taplo format .",
-    "biome format --write --json-parse-allow-comments=true --indent-style=space --indent-width=4 cmux/cmux.json",
-]
+format = "TREEFMT_INJECTED=1 treefmt"
 test = [
     "busted .",
 ]
@@ -17,3 +11,6 @@ lint = [
     "nil diagnostics --deny-warnings **/*.nix",
     "shellcheck **/*.sh bin/*",
 ]
+
+[hooks]
+enter = "test -f \"$(git rev-parse --git-path hooks/pre-commit)\" || prek install"

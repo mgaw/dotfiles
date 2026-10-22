@@ -1,0 +1,56 @@
+on-unmatched = "debug"
+
+[formatter.biome]
+command = "biome"
+options = [
+    "format",
+    "--write",
+    "--json-parse-allow-comments=true",
+    "--indent-style=space",
+    "--indent-width=4",
+]
+includes = ["*.json", "*.jsonc"]
+excludes = [
+    "karabiner/karabiner.json",
+    "nvim/lazy-lock.json",
+]
+
+[formatter.nixfmt]
+command = "nixfmt"
+includes = ["*.nix"]
+
+[formatter.prettier]
+command = "prettier"
+options = ["--write"]
+includes = ["*.md", "*.yaml", "*.yml"]
+
+[formatter.shfmt]
+command = "shfmt"
+options = ["-w"]
+includes = ["*.zsh", "*.sh", "bin/*"]
+
+[formatter.stylua]
+command = "stylua"
+includes = ["*.lua"]
+
+[formatter.taplo]
+command = "taplo"
+options = ["format"]
+includes = ["*.toml"]
+
+# Opt-in (TREEFMT_INJECTED=1), so editors calling treefmt don't recurse into nvim.
+[formatter.injected]
+command = "sh"
+options = [
+    "-c",
+    '''
+[ -n "$TREEFMT_INJECTED" ] || exit 0
+unset TREEFMT_INJECTED
+exec nvim --headless \
+  -c "argdo lua require('conform').format({ formatters = { 'injected' }, async = false })" \
+  -c "noautocmd wqa" "$@"
+''',
+    "injected",
+]
+includes = ["*.lua", "*.md", "*.nix", "*.toml"]
+priority = -1
