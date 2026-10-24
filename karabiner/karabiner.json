@@ -20,12 +20,12 @@
                         ]
                     },
                     {
-                        "description": "Firefox Ctrl-W",
+                        "description": "Firefox and LM Studio Ctrl-W",
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
-                                        "bundle_identifiers": ["org.mozilla.firefox"],
+                                        "bundle_identifiers": ["^org\\.mozilla\\.firefox$", "^ai\\.elementlabs\\.lmstudio$"],
                                         "type": "frontmost_application_if"
                                     }
                                 ],
