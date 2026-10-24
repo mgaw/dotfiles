@@ -30,6 +30,7 @@
     ./scripts.nix
     ./usage.nix
     ./utils.nix
+    ./ykman.nix
     ~/src/dotfiles/nix/home.local.nix
   ];
 
@@ -57,7 +58,6 @@
     tree
     typescript
     vscode-langservers-extracted
-    yubikey-manager
   ];
 
   homebrew.casks = [
