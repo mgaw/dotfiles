@@ -9,7 +9,7 @@ options = [
     "--indent-style=space",
     "--indent-width=4",
 ]
-includes = ["*.json", "*.jsonc"]
+includes = ["*.js", "*.json", "*.jsonc"]
 excludes = [
     "karabiner/karabiner.json",
     "nvim/lazy-lock.json",
@@ -27,7 +27,7 @@ includes = ["*.md", "*.yaml", "*.yml"]
 [formatter.shfmt]
 command = "shfmt"
 options = ["-w"]
-includes = ["*.zsh", "*.sh", "bin/*"]
+includes = ["*.bash", "*.sh", "*.zsh"]
 
 [formatter.stylua]
 command = "stylua"

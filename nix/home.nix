@@ -27,6 +27,7 @@
     ./homebrew.nix
     ./kube-ps1.nix
     ./mise.nix
+    ./scripts.nix
     ./usage.nix
     ./utils.nix
     ~/src/dotfiles/nix/home.local.nix
@@ -54,6 +55,7 @@
     qrencode
     sqlite
     tree
+    typescript
     vscode-langservers-extracted
     yubikey-manager
   ];
@@ -92,10 +94,6 @@
   programs = {
     bash.enable = true;
   };
-
-  home.sessionPath = [
-    "${config.utils.dotfiles}/bin"
-  ];
 
   xdg.configFile."uv/uv.toml".source = config.utils.toml.generate "uv.toml" {
     # https://docs.astral.sh/uv/reference/settings/#exclude-newer
