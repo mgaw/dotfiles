@@ -254,6 +254,12 @@ require('lib.set_keymaps')({
     },
     [alt.shift['+']] = { i = '•' },
 
+    [alt.v] = {
+        ni = helpers.paste_markdown,
+        x = helpers.paste_markdown_over_selection,
+    },
+    [alt.shift.v] = { x = helpers.copy_as_html },
+
     ['<2-LeftMouse>'] = helpers.definitions,
     ['<MiddleMouse>'] = function()
         utils.feed_keycodes_noremap('<LeftMouse>')

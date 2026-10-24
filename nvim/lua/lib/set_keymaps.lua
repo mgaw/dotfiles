@@ -41,6 +41,9 @@ local function unpack_modes(mode)
     if mode == 'nx' then
         return { 'n', 'x' }
     end
+    if mode == 'ni' then
+        return { 'n', 'i' }
+    end
     if mode == 'xo' then
         return { 'x', 'o' }
     end

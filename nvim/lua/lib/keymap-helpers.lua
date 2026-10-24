@@ -34,6 +34,45 @@ M.add_section = {
     desc = 'Add section',
 }
 
+local function clipboard_markdown_lines()
+    local markdown = vim.fn.system('pbpaste-md')
+    if vim.v.shell_error ~= 0 or vim.trim(markdown) == '' then
+        error('pbpaste-md failed')
+    end
+    return vim.split(vim.trim(markdown), '\n', { plain = true })
+end
+
+M.paste_markdown = {
+    function()
+        local lines = clipboard_markdown_lines()
+        if vim.startswith(vim.fn.mode(), 'i') then
+            vim.api.nvim_put(lines, 'c', false, true)
+        else
+            vim.api.nvim_put(lines, 'l', true, true)
+        end
+    end,
+    desc = 'Paste clipboard HTML as Markdown',
+}
+
+M.paste_markdown_over_selection = {
+    function()
+        vim.fn.setreg('z', clipboard_markdown_lines(), 'V')
+        vim.cmd('normal! "zp')
+    end,
+    desc = 'Paste clipboard HTML as Markdown over selection',
+}
+
+M.copy_as_html = {
+    function()
+        vim.cmd('normal! "+y')
+        vim.fn.system('pbcopy-md', vim.fn.getreg('+'))
+        if vim.v.shell_error ~= 0 then
+            vim.notify('pbcopy-md failed; clipboard has plain markdown', vim.log.levels.WARN)
+        end
+    end,
+    desc = 'Copy selection to clipboard as HTML',
+}
+
 local function is_cursor_on_url()
     return vim.startswith(vim.fn.expand('<cfile>'), 'https://')
 end
